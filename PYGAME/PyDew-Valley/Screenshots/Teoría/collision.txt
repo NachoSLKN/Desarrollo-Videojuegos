@@ -1,0 +1,5 @@
+# Queremos chekear si el jugador está colisionando con algo
+# Lo dificil es saber en que dirección ocurrió la colisión
+# Añadiremos código para saber esto, realmente es el player quien tomará la iniciativa y marcará una dirección
+# Tendremos que usar una HITBOX o algún tipo de rectángulo invisible para manejar las colisiones,
+# podríamos usar el rectángulo del sprite, pero quedaría muy grande.
