@@ -57,5 +57,5 @@ Agradecimientos especiales a los creadores de contenido y tutoriales que ayudaro
 
 ---
 
-## 📂 Estructura del proyecto
+
 
