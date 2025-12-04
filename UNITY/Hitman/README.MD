@@ -1,6 +1,7 @@
 # Hitman-Clone en Unity
 
-![Portada del proyecto](E:/NACHO/GIT/Desarrollo-Videojuegos/UNITY/Hitman/Portada.png)
+![Portada del proyecto](Hitman/Portada.png)
+
 
 ## 📘 Sobre este proyecto
 
