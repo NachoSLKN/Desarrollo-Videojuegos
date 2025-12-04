@@ -5,7 +5,7 @@ from timer import Timer
 
 class Player(pygame.sprite.Sprite):
     
-    def __init__(self, pos, group):
+    def __init__(self, pos, group, collision_sprites):
         super().__init__(group)
         #Este self import va arriba del todo de la función init para que cuando creemos el self image
         #del general SetUp, tengamos activop nuestro diccionario. 
@@ -17,12 +17,21 @@ class Player(pygame.sprite.Sprite):
         self.image = self.animations[self.status][self.frame_index]
         #self.image.fill('green')
         self.rect = self.image.get_rect(center = pos)
+        #Copiamos el rectángulo y le cambiamos la dimensión con inflate mientras lo mantiene centrado, en el centro.
         self.z = LAYERS['main']
         
         # Movements Attributes
         self.direction = pygame.math.Vector2()
         self.pos = pygame.math.Vector2(self.rect.center)
         self.speed = 200
+        
+        # collision
+        
+        self.collision_sprites = collision_sprites
+        # self.hitbox = self.rect.copy().inflate((-126,-70)) #HorizontalAxis, VerticalAxis
+        self.hitbox = pygame.Rect(0, 0, self.rect.width * 0.5, self.rect.height * 0.2)
+        self.hitbox.midbottom = self.rect.midbottom
+
         
         #timers: atributo de tiempo para cierta acción
         self.timers= { #Diccionario
@@ -50,7 +59,8 @@ class Player(pygame.sprite.Sprite):
     def use_seed(self):
         pass         
                
-    def import_assets(self): #Diccionario de animaciones: 
+    def import_assets(self): 
+        #Diccionario de animaciones: 
         #Tecla y valor de la tecla asociada para todos los estados que el jugador podría tomar.
         self.animations = {
     'up': [], 'down': [], 'left': [], 'right': [],
@@ -159,7 +169,32 @@ class Player(pygame.sprite.Sprite):
     def update_timers(self):
         for timer in self.timers.values():
             timer.update()    
-            
+                     
+    def collision(self, direction):
+     #Miramos todos los sprites dentro del collision sprite
+     for sprite in self.collision_sprites.sprites():
+         if hasattr(sprite,'hitbox'):
+             
+             # si el jugador se mueve a la derecha, cualquier colision tiene que ser a la izquierda del colisionable.
+             # y viceversa
+             if sprite.hitbox.colliderect(self.hitbox):
+                 if direction == 'horizontal': # toda la lógica para las colisiones en el eje horitonzal
+                     if self.direction.x > 0: #si el personaje se mueve hacia la derecha
+                         self.hitbox.right = sprite.hitbox.left
+                     if self.direction.x < 0: #si el personaje se mueve hacia la izquierda
+                         self.hitbox.left = sprite.hitbox.right
+                     self.rect.centerx = self.hitbox.centerx
+                     self.pos.x = self.hitbox.centerx
+
+
+                 if direction == 'vertical': # toda la lógica para las colisiones en el eje vertical
+                     if self.direction.y > 0: #si el personaje se mueve hacia abajo
+                         self.hitbox.bottom = sprite.hitbox.top
+                     if self.direction.y < 0: #si el personaje se mueve hacia arriba
+                         self.hitbox.top = sprite.hitbox.bottom
+                     self.rect.centery = self.hitbox.centery
+                     self.pos.y = self.hitbox.centery
+                    
     def move(self, dt):
         
         #Normalizando Vector: Pitágoras / Velocidad constante
@@ -171,11 +206,16 @@ class Player(pygame.sprite.Sprite):
         #Solo podemos normalizar un vector si este tiene una longitud, si apunta al 0,0 no se puede hacer
         #print(self.direction)
         self.pos.x += self.direction.x * self.speed*dt
-        self.rect.centerx = self.pos.x
+        #Usamos round para que pygame no trunke los resultados 1.9 = 1 cuando debería ser 2. Tendríamos comportamiento incorrecto.
+        self.hitbox.centerx = round(self.pos.x)
+        self.rect.centerx = self.hitbox.centerx
+        self.collision('horizontal')
         
        # Vertical Movement 
         self.pos.y += self.direction.y * self.speed*dt
-        self.rect.centery = self.pos.y
+        self.hitbox.centery = round(self.pos.y)
+        self.rect.centery = self.hitbox.centery
+        self.collision('vertical')
        
     def update(self, dt): #DeltaTime nos ayuda a mover todo de forma independiente al frameRate
         self.input()

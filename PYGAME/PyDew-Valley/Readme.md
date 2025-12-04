@@ -1,37 +1,54 @@
-# PyDew Valley – Proyecto en Pygame
+# 🌾 PyDew Valley — Proyecto Pygame  
+**Progreso actual del proyecto: 45%**
 
+PyDew Valley es un juego 2D inspirado en *Stardew Valley*, desarrollado desde cero con **Python + Pygame**.  
+El objetivo es recrear un sistema de granja funcional, con animaciones, físicas, colisiones, IA básica y sistemas de interacción complejos.
+
+---
+
+## 🖼️ Portada  
 ![Portada](screenshots/portada.png)
 
-**PyDew Valley** es un proyecto en desarrollo creado con **Pygame**, inspirado en el clásico *Stardew Valley*.  
-El objetivo es recrear un pequeño simulador de granja en 2D, con sistemas de cultivo, recursos, ciclos, herramientas y NPCs.
+---
 
-Actualmente el proyecto se encuentra aproximadamente al **33% de desarrollo**.
+## ✨ Características actuales (45%)  
+✔️ Movimiento del jugador mejorado  
+✔️ Animaciones completas en 8 direcciones  
+✔️ Sistema de herramientas (hacha, regadera, azada)  
+✔️ Sistema base de colisiones avanzado  
+✔️ Tileset del mapa y entorno funcional  
+✔️ Animaciones de agua  
+✔️ Sistema de soporte (carga de imágenes, recortes, etc.)  
+✔️ Partes iniciales de interacción con entorno  
+  
+🔄 En desarrollo (próximo 60%):  
+– Sistema de cultivos avanzado  
+– Inventario  
+– NPCs  
+– Transiciones de mapa  
+– Sonido y partículas expandidas  
 
 ---
 
-## 🌾 Características del Proyecto (hasta ahora)
+# 📘 Teoría y anotaciones de interés  
+Durante el desarrollo se han generado varios esquemas útiles para entender el funcionamiento interno del juego:
 
-- Movimiento del jugador en un mapa 2D
-- Animaciones básicas del personaje
-- Sistema de herramientas (azada, regadera, hacha…)
-- Interacción con tiles del entorno
-- Sistema de energía del jugador
-- Plantación y crecimiento de cultivos
-- Gráficos y sprites personalizados
-- Mapa dividido por capas (ground, objects, collision, etc.)
+### 🔵 **Colisiones en Pygame**
+![Colisiones 1](screenshots/Colisiones1.png)  
+![Colisiones 2](screenshots/Colisiones2.png)  
+![Colisiones 3](screenshots/Colisiones3.png)
 
----
+### 🔸 **Tiles de colisión**
+![Collision Tiles](screenshots/CollisionTiles.png)
 
-## 📌 Próximos Objetivos
-
-- IA de NPCs
-- Sistema de misiones y relaciones
-- Ciclo día/noche y estaciones
-- Inventario y sistema de crafting
-- Sonido y música
-- Menú principal y ajustes
-- Optimización general
+### 🟩 **Normalización de vectores (Pitágoras)**
+![Normalización](screenshots/NormalizarVector (Pitágoras).png)
 
 ---
 
+## 🙌 Agradecimientos  
+A **Clear Code**, por su contenido formativo y estructura pedagógica que ha servido como guía principal del desarrollo.
 
+---
+
+## 📂 Estructura del proyecto  

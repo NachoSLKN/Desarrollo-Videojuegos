@@ -14,6 +14,8 @@ class Level:
     
         # sprite groups
         self.all_sprites = CameraGroup()
+        # necesitamos saber que sprites son colisionables. Todos los sprites con los que se puedan colisionar estarán aquí almacenados.
+        self.collision_sprites = pygame.sprite.Group()
     
         self.setup()
         self.overlay = Overlay(self.player)
@@ -38,7 +40,7 @@ class Level:
             Generic(
                 (x * TITLE_SIZE, y * TITLE_SIZE),
                 surf,
-                self.all_sprites,
+                [self.all_sprites, self.collision_sprites],
                 LAYERS['main']   
     )
 
@@ -50,17 +52,29 @@ class Level:
         
         # trees
         for obj in tmx_data.get_layer_by_name('Trees'):
-            Tree((obj.x, obj.y), obj.image, self.all_sprites, obj.name)
+            Tree((obj.x, obj.y), obj.image, [self.all_sprites,self.collision_sprites ], obj.name)
         
         
         # wildflowers
         for obj in tmx_data.get_layer_by_name('Decoration'):
-             WildFlower((obj.x, obj.y),obj.image,self.all_sprites)
+             WildFlower((obj.x, obj.y),obj.image, [self.all_sprites, self.collision_sprites])
         
+        # collisions tiles
+        for x, y, surf in tmx_data.get_layer_by_name('Collision').tiles():
+            Generic(
+                (x * TITLE_SIZE, y * TITLE_SIZE),
+                pygame.Surface((TITLE_SIZE, TITLE_SIZE)),
+                self.collision_sprites
+                # Mapa de colisiones [self.all_sprites,self.collision_sprites]
+
+            )
+
         
-        
-        self.player = Player((640, 360), self.all_sprites) # Instancia de la clase Player
-                             #x,y        #group   
+        # player
+        for obj in tmx_data.get_layer_by_name('Player'):
+            if obj.name == 'Start':
+                self.player = Player((obj.x, obj.y), self.all_sprites, self.collision_sprites) # Instancia de la clase Player
+                                        #x,y        #group   
         Generic( 
             pos = (0,0), 
             surf = pygame.image.load('project/graphics/world/ground.png').convert_alpha(), 
