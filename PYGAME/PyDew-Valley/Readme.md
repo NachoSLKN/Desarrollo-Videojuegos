@@ -34,7 +34,7 @@ Actualmente centrado en movimiento, colisiones, interacción con tiles y mecáni
 ![Tiles](Screenshots/Teoria/CollisionTiles.png)
 
 ### 🔹 Normalización de vector (Pitágoras)
-![Normalizar Vector](Screenshots/Teoria/NormalizarVectorPitágoras.png)
+![Normalizar Vector](Screenshots/Teoria/NormalizarVector(Pitágoras).png)
 
 ---
 
