@@ -1,54 +1,61 @@
-# 🌾 PyDew Valley — Proyecto Pygame  
-**Progreso actual del proyecto: 45%**
+# PyDew Valley – Pygame Project
 
-PyDew Valley es un juego 2D inspirado en *Stardew Valley*, desarrollado desde cero con **Python + Pygame**.  
-El objetivo es recrear un sistema de granja funcional, con animaciones, físicas, colisiones, IA básica y sistemas de interacción complejos.
+![Portada](Screenshots/Portada.png)
 
----
-
-## 🖼️ Portada  
-![Portada](screenshots/portada.png)
+Proyecto personal en Pygame inspirado en Stardew Valley.  
+Actualmente centrado en movimiento, colisiones, interacción con tiles y mecánicas base del jugador.
 
 ---
 
-## ✨ Características actuales (45%)  
-✔️ Movimiento del jugador mejorado  
-✔️ Animaciones completas en 8 direcciones  
-✔️ Sistema de herramientas (hacha, regadera, azada)  
-✔️ Sistema base de colisiones avanzado  
-✔️ Tileset del mapa y entorno funcional  
-✔️ Animaciones de agua  
-✔️ Sistema de soporte (carga de imágenes, recortes, etc.)  
-✔️ Partes iniciales de interacción con entorno  
-  
-🔄 En desarrollo (próximo 60%):  
-– Sistema de cultivos avanzado  
-– Inventario  
-– NPCs  
-– Transiciones de mapa  
-– Sonido y partículas expandidas  
+## 📌 Progreso del proyecto  
+**✔️ 45% completado**
+
+- Movimiento fluido del jugador  
+- Sistema de colisiones mejorado  
+- Normalización de vectores  
+- Sistema de tiles y detección precisa  
+- Preparación para interacción con entorno  
+- Estructura del proyecto reorganizada  
 
 ---
 
-# 📘 Teoría y anotaciones de interés  
-Durante el desarrollo se han generado varios esquemas útiles para entender el funcionamiento interno del juego:
+## 📘 Teoría y anotaciones importantes
 
-### 🔵 **Colisiones en Pygame**
-![Colisiones 1](screenshots/Colisiones1.png)  
-![Colisiones 2](screenshots/Colisiones2.png)  
-![Colisiones 3](screenshots/Colisiones3.png)
+### 🔹 Colisiones básicas
+![Colisiones 1](Screenshots/Teoria/Colisiones1.png)
 
-### 🔸 **Tiles de colisión**
-![Collision Tiles](screenshots/CollisionTiles.png)
+### 🔹 Colisiones avanzadas
+![Colisiones 2](Screenshots/Teoria/Colisiones2.png)
 
-### 🟩 **Normalización de vectores (Pitágoras)**
-![Normalización](screenshots/NormalizarVector (Pitágoras).png)
+### 🔹 Colisiones con bounding box
+![Colisiones 3](Screenshots/Teoria/Colisiones3.png)
 
----
+### 🔹 Tiles de colisión
+![Tiles](Screenshots/Teoria/CollisionTiles.png)
 
-## 🙌 Agradecimientos  
-A **Clear Code**, por su contenido formativo y estructura pedagógica que ha servido como guía principal del desarrollo.
+### 🔹 Normalización de vector (Pitágoras)
+![Normalizar Vector](Screenshots/Teoria/NormalizarVectorPitágoras.png)
 
 ---
 
-## 📂 Estructura del proyecto  
+## 🎮 Objetivo del proyecto
+
+Construir una base sólida para un juego estilo **Stardew Valley** utilizando:
+
+- Python 3  
+- Pygame  
+- Arquitectura organizada en módulos  
+- Spritesheet y sistema de animación  
+- Física 2D simple  
+- Mapas creados con Tiled  
+
+---
+
+## 🙌 Agradecimientos
+
+Agradecimientos especiales a los creadores de contenido y tutoriales que ayudaron en la fase inicial del proyecto.
+
+---
+
+## 📂 Estructura del proyecto
+
