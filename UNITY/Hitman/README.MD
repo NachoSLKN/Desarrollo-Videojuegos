@@ -1,11 +1,10 @@
 # Hitman-Clone en Unity
 
-![Portada del proyecto](Hitman/Portada.png)
-
+![Portada del proyecto](Portada.png)
 
 ## 📘 Sobre este proyecto
 
-Este proyecto es un clon de un juego de sigilo y disparos en tercera persona inspirado en la saga Hitman, desarrollado en Unity siguiendo la playlist creada por **WITS Gaming**.
+Este proyecto es un juego de sigilo y disparos en tercera persona inspirado en la saga Hitman, desarrollado en Unity siguiendo el curso creado por **WITS Gaming**.
 
 ## ✅ Qué aprenderemos en este proyecto
 
@@ -20,4 +19,4 @@ A lo largo de los vídeos aprenderemos a:
 
 ## 🙏 Agradecimientos  
 
-Queremos agradecer a **WITS Gaming** por compartir esta playlist y ofrecer contenido tan útil para quienes estamos aprendiendo desarrollo de videojuegos.
+Agradecer a **WITS Gaming** por compartir este curso y ofrecer contenido para quienes estamos aprendiendo desarrollo de videojuegos.
