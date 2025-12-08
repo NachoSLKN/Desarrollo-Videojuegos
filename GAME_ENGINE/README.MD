@@ -1,6 +1,6 @@
 # 🎮 Game Engine From Scratch (C + OpenGL + SDL2)
 
-![Portada](GAME_ENGINE/GAMEENGINE_GAME/extra/portada.png)
+![Portada](GAMEENGINE_GAME/extra/portada.png)
 
 ## 🧩 Descripción del Proyecto
 Este proyecto consiste en la creación de un **motor de videojuegos desde cero**, programado en **C** y utilizando las librerías **OpenGL**, **SDL2**, **GLAD** y **FreeType**.  
