@@ -68,7 +68,3 @@ Incluye:
 - Headers en `freetype/include/`
 
 ---
-
-# 🧱 Arquitectura del Motor
-El motor se estructura de forma clara y modular:
-
