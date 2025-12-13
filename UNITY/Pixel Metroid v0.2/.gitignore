@@ -29,3 +29,5 @@ Thumbs.db
 
 # === WebGL Builds (optional, usually not versioned) ===
 WEBGL*/
+
+.vsconfig
