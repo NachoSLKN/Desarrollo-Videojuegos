@@ -1,0 +1,44 @@
+# ========================
+# Unity
+# ========================
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Mm]emoryCaptures/
+UserSettings/
+
+# ========================
+# Visual Studio / Rider
+# ========================
+*.csproj
+*.sln
+*.user
+*.unityproj
+*.pidb
+*.booproj
+*.svd
+*.userprefs
+
+# ========================
+# Unity generated
+# ========================
+.vs/
+obj/
+*.csproj.AssemblyReference.cache
+
+# ========================
+# Android
+# ========================
+*.apk
+*.aab
+
+# ========================
+# OS / IDE
+# ========================
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
