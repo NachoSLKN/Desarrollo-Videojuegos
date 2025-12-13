@@ -1,0 +1,31 @@
+# === Unity generated ===
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+UserSettings/
+
+# === Visual Studio / Rider ===
+.vs/
+*.csproj
+*.sln
+*.user
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+
+# === OS files ===
+.DS_Store
+Thumbs.db
+
+# === Unity cache ===
+*.unityproj
+*.gradle
+*.tmp
+
+# === WebGL Builds (optional, usually not versioned) ===
+WEBGL*/
