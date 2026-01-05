@@ -44,3 +44,8 @@ obj/
 Thumbs.db
 *.tgz
 
+# Python
+__pycache__/
+*.pyc
+
+
