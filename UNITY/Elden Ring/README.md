@@ -37,6 +37,9 @@ Aquí se realizan pruebas iniciales de:
 - Lectura de inputs en tiempo real  
 - Escenario base para futuras mecánicas de combate y exploración  
 
+----------------------------------------------------------------------
+
+Mi perfil en ArtStation:
 
 - Modelado 3D de una escena con ambientación Dark Souls:
 https://www.artstation.com/artwork/yJL9Zn
@@ -45,7 +48,7 @@ https://www.artstation.com/artwork/yJL9Zn
 https://www.artstation.com/artwork/nEzo44
 
 
----
+-----------------------------------------------------------------------
 
 ## 🎮 Controles e Input System
 
@@ -64,7 +67,7 @@ Gráfico donde se muestran:
 
 Gracias al creador **Sebastian Graves**, cuyo contenido y metodología inspiran y permiten el desarrollo de este proyecto.
 
----
 
-## 📁 Estructura del repositorio
+
+
 
