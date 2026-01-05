@@ -14,6 +14,7 @@ Este repositorio documenta mi progreso siguiendo y adaptando la serie del creado
 
 ---
 
+
 ## 🎮 Menú principal (Menu Scene)
 
 ![Menu Scene](Screenshots/Menuscene.png)
@@ -35,6 +36,14 @@ Aquí se realizan pruebas iniciales de:
 - Movimiento del jugador  
 - Lectura de inputs en tiempo real  
 - Escenario base para futuras mecánicas de combate y exploración  
+
+
+- Modelado 3D de una escena con ambientación Dark Souls:
+https://www.artstation.com/artwork/yJL9Zn
+
+- DARK SIGN DARK SOULS: 
+https://www.artstation.com/artwork/nEzo44
+
 
 ---
 
