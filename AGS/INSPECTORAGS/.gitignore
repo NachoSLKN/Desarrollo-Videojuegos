@@ -1,0 +1,14 @@
+# AGS generated files
+_Debug/
+AudioCache/
+Compiled/
+
+# user files
+*.user
+*.bak
+
+# temporary files
+*.tmp
+*.log
+*.spr
+backup_acsprset.spr
