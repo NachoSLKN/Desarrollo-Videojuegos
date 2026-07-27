@@ -1,22 +1,60 @@
-# Hitman-Clone en Unity
+# Hitman 
 
-![Portada del proyecto](Portada.png)
+![Portada](Portada.png)
 
-## 📘 Sobre este proyecto
+## 🎮 Sobre el proyecto
 
-Este proyecto es un juego de sigilo y disparos en tercera persona inspirado en la saga Hitman, desarrollado en Unity siguiendo el curso creado por **WITS Gaming**.
+Proyecto personal desarrollado en Unity inspirado en la saga **Hitman**.
 
-## ✅ Qué aprenderemos en este proyecto
+El objetivo de este proyecto es aprender el desarrollo de videojuegos en tercera persona implementando mecánicas propias de un juego de infiltración como movimiento, sigilo, IA, disparos y navegación por escenarios.
 
-A lo largo de los vídeos aprenderemos a:
+El proyecto sigue como base el curso de WITS Gaming. 
 
-- Configurar un personaje en tercera persona con movimiento, rotación y controles.
-- Implementar una cámara dinámica en tercera persona adaptada al entorno.
-- Crear mecánicas de sigilo propias de juegos tipo “stealth”.
-- Añadir sistemas de disparo, detección de enemigos y efectos visuales como el *muzzle flash*.
-- Aplicar físicas y comportamientos realistas mediante colisiones, gravedad y control del movimiento.
-- Comprender mejor la estructura y flujo de trabajo de un proyecto completo en Unity.
+---
 
-## 🙏 Agradecimientos  
+## 🚀 Características
 
-Agradecer a **WITS Gaming** por compartir este curso y ofrecer contenido para quienes estamos aprendiendo desarrollo de videojuegos.
+- Movimiento en tercera persona
+- Cámara libre
+- Sistema de disparo
+- IA básica de enemigos
+- Mecánicas de sigilo
+- Patrullas
+- Sistema de detección
+- Interacción con el escenario
+- Animaciones mediante Animator
+
+---
+
+## 🛠 Tecnologías
+
+- Unity
+- C#
+- Blender
+- Mixamo
+
+---
+
+## 📚 Curso utilizado
+
+Este proyecto está basado inicialmente en la lista de reproducción:
+
+https://www.youtube.com/playlist?list=PLA-xaldQ72rxijh0UIIw9LbBiomYjCrNq
+
+A partir de esa base el proyecto continúa evolucionando de forma independiente.
+
+---
+
+## 📹 Desarrollo
+
+Primer vídeo del desarrollo:
+
+https://youtu.be/oCQWSZgxsfI
+
+---
+
+## 📌 Estado
+
+🚧 En desarrollo
+
+Este repositorio forma parte de mi portfolio personal de desarrollo de videojuegos.
