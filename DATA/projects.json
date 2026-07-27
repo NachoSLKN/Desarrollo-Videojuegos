@@ -1,0 +1,40 @@
+{
+  "games": [
+    {
+      "id": "hitman",
+      "title": "Hitman Clone",
+      "engine": "Unity",
+
+      "folder": "UNITY/Hitman",
+
+      "status": "En desarrollo",
+
+      "description": "Demo de sigilo inspirada en Hitman.",
+
+      "tags": [
+        "Unity",
+        "C#",
+        "Stealth"
+      ]
+    },
+
+    {
+      "id": "pydew",
+
+      "title": "PyDew Valley",
+
+      "engine": "Pygame",
+
+      "folder": "PYGAME/PyDew Valley",
+
+      "status": "Demo",
+
+      "description": "Juego de granja desarrollado con Python y Pygame.",
+
+      "tags": [
+        "Python",
+        "Pygame"
+      ]
+    }
+  ]
+}
