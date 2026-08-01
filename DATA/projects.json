@@ -18,22 +18,30 @@
       "development": "https://youtu.be/oCQWSZgxsfI",
       "gameplayLabel": "VER DESARROLLO"
     },
-    {
-      "id": "pydew",
-      "title": "PyDew Valley",
-      "engine": "Pygame",
-      "folder": "PYGAME/PyDew-Valley",
-      "status": "Demo",
-      "description": "Juego de granja desarrollado con Python y Pygame.",
-      "tags": [
-        "Python",
-        "Pygame"
-      ],
-      "github": "https://github.com/NachoSLKN/Desarrollo-Videojuegos/tree/main/PYGAME/PyDew-Valley",
-      "readme": "https://github.com/NachoSLKN/Desarrollo-Videojuegos/blob/main/PYGAME/PyDew-Valley/README.md",
-      "gameplay": "https://youtu.be/X5yHedo7cYY",
-      "gameplayLabel": "VER GAMEPLAY"
-    },
+  {
+  "id": "pydew",
+  "title": "PyDew Valley",
+  "engine": "Pygame",
+  "folder": "PYGAME/PyDew-Valley",
+  "status": "Demo publicada",
+  "description": "Juego de granja desarrollado con Python y Pygame, disponible para Windows y navegador.",
+  "tags": [
+    "Python",
+    "Pygame",
+    "Windows",
+    "Web"
+  ],
+  "github": "https://github.com/NachoSLKN/Desarrollo-Videojuegos/tree/main/PYGAME/PyDew-Valley",
+  "githubPc": "https://github.com/NachoSLKN/Desarrollo-Videojuegos/tree/main/PYGAME/PyDew-Valley/PyDew-Valley-PC",
+  "githubWeb": "https://github.com/NachoSLKN/Desarrollo-Videojuegos/tree/main/PYGAME/PyDew-Valley/PyDew-Valley-WEB",
+  "readme": "https://github.com/NachoSLKN/Desarrollo-Videojuegos/blob/main/PYGAME/PyDew-Valley/PyDew-Valley-PC/README.md",
+  "imageUrl": "https://raw.githubusercontent.com/NachoSLKN/Desarrollo-Videojuegos/main/PYGAME/PyDew-Valley/PyDew-Valley-PC/Portada.png",
+  "gameplay": "https://youtu.be/X5yHedo7cYY",
+  "gameplayLabel": "VER GAMEPLAY",
+  "itchUrl": "https://nachoslkn.itch.io/pydew-valley",
+  "playUrl": "https://nachoslkn.itch.io/pydew-valley",
+  "downloadUrl": "https://nachoslkn.itch.io/pydew-valley"
+},
     {
       "id": "inspector-ags",
       "title": "The Inspector",
