@@ -1,26 +1,32 @@
 from pygame.math import Vector2
 
-#Screen
-SCREEN_WIDTH = 1280 #Determina el ancho de la ventana
-SCREEN_HEIGHT = 720 #Determina el alto de la ventana
+# --------------------------------------------------
+# Configuración general
+# --------------------------------------------------
+
+DEBUG = False
+
+# Screen
+SCREEN_WIDTH = 1280
+SCREEN_HEIGHT = 720
 TITLE_SIZE = 64
 
-#Overlay Positions
+# Overlay Positions
 OVERLAY_POSITIONS = {
-    
-    'tool': (40, SCREEN_HEIGHT -15),
-    'seed': (70, SCREEN_HEIGHT - 5)}
+
+    'tool': (40, SCREEN_HEIGHT - 15),
+    'seed': (70, SCREEN_HEIGHT - 5)
+}
 
 PLAYER_TOOL_OFFSET = {
     'left': Vector2(-50, 40),
     'right': Vector2(50, 40),
-    'up': Vector2(0,-10),
-    'down': Vector2(0,50)
+    'up': Vector2(0, -10),
+    'down': Vector2(0, 50)
 }
 
+LAYERS = {
 
-LAYERS = { #Capas para dibujar las diferentes partes en el mapa
-    
     'water': 0,
     'ground': 1,
     'soil': 2,
@@ -34,11 +40,9 @@ LAYERS = { #Capas para dibujar las diferentes partes en el mapa
     'rain drops': 10
 }
 
-
 APPLE_POS = {
     'Small': [(18,17), (30,37), (12,50), (30,45), (20,30), (30,10)],
     'Large': [(30,24), (60,65), (50,50), (16,40), (45,50), (42,70)]
-    
 }
 
 GROW_SPEED = {

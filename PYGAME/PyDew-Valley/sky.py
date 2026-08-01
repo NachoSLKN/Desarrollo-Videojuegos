@@ -3,6 +3,7 @@ from settings import *
 from support import import_folder
 from sprites import Generic #Importa la clase Generic de sprites, también podríamos ponerla en Sprites.py
 from random import randint, choice
+from resource_path import resource_path
 
 class Sky:
     #Controlamos como se verá el juego 
@@ -56,7 +57,7 @@ class Rain:
         self.all_sprites = all_sprites
         self.rain_drops = import_folder('project/graphics/rain/drops/')
         self.rain_floor = import_folder('project/graphics/rain/floor/')
-        self.floor_w, self.floor_h = pygame.image.load('project/graphics/world/ground.png').get_size()
+        self.floor_w, self.floor_h = pygame.image.load(resource_path('project/graphics/world/ground.png')).get_size()
         
     def create_floor(self): #metodo para crear el suelo
         Drop(

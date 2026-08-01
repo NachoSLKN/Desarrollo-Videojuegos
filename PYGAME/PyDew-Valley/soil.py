@@ -3,6 +3,7 @@ from settings import *
 from pytmx.util_pygame import load_pygame
 from support import *
 from random import choice
+from resource_path import resource_path
 
 class SoilTile(pygame.sprite.Sprite):
     def __init__(self,pos,surf,groups):
@@ -82,22 +83,22 @@ class SoilLayer:
         self.create_hit_rects()
         
         #sounds
-        self.hoe_sound = pygame.mixer.Sound('project/audio/hoe.wav')
+        self.hoe_sound = pygame.mixer.Sound(resource_path('project/audio/hoe.wav'))
         self.hoe_sound.set_volume(0.3)
         
-        self.plant_sound = pygame.mixer.Sound('project/audio/plant.wav')
+        self.plant_sound = pygame.mixer.Sound(resource_path('project/audio/plant.wav'))
         self.hoe_sound.set_volume(0.2)
  
         
     def create_soil_grid(self):
-        ground = pygame.image.load('project/graphics/world/ground.png')
+        ground = pygame.image.load(resource_path('project/graphics/world/ground.png'))
         h_tiles, v_tiles = ground.get_width() // TITLE_SIZE, ground.get_height() // TITLE_SIZE
         print(h_tiles)
         print(v_tiles)
         
         self.grid = [ [[] for col in range (h_tiles)] for row in range(v_tiles)]
         print(self.grid)
-        for x,y,_ in load_pygame('project/data/map.tmx').get_layer_by_name('Farmable').tiles(): #Usando _ Ignoramos el valor de ese valor
+        for x,y,_ in load_pygame(resource_path('project/data/map.tmx')).get_layer_by_name('Farmable').tiles(): #Usando _ Ignoramos el valor de ese valor
             self.grid[y][x].append('F')
         print(self.grid)
     

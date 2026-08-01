@@ -2,144 +2,159 @@ import pygame
 from settings import *
 from random import randint, choice
 from timer import Timer
+from resource_path import resource_path
+
 
 class Generic(pygame.sprite.Sprite):
-    def __init__(self, pos, surf, groups, z = LAYERS['main']):
+    def __init__(self, pos, surf, groups, z=LAYERS['main']):
         super().__init__(groups)
 
         self.image = surf
-        self.rect = self.image.get_rect(topleft = pos)
+        self.rect = self.image.get_rect(topleft=pos)
         self.z = z
-        self.hitbox = self.rect.copy().inflate(-self.rect.width * 0.2, -self.rect.height * 0.75)
+
+        self.hitbox = self.rect.copy().inflate(
+            -self.rect.width * 0.2,
+            -self.rect.height * 0.75
+        )
+
+class CollisionTile(Generic):
+    def __init__(self, pos, surf, groups):
+        super().__init__(pos, surf, groups)
+        self.hitbox = self.rect.copy()
+
 
 class Interaction(Generic):
-    def __init__(self,pos,size,groups,name):
+    def __init__(self, pos, size, groups, name):
         surf = pygame.Surface(size)
-        super().__init__(pos,surf,groups)
+        super().__init__(pos, surf, groups)
+
         self.name = name
 
-class Water(Generic): 
-# El agua estará animada. No necesita tener HITBOX porque no podremos colisionar.
+
+
+class Water(Generic):
+    # El agua estará animada. No necesita tener HITBOX porque no podremos colisionar.
     def __init__(self, pos, frames, groups):
-        
-        #Animation setup
+
+        # Animation setup
         self.frames = frames
         self.frame_index = 0
-        
+
         # sprite setup
-        super().__init__(pos = pos, surf = self.frames[self.frame_index],
-                         groups = groups, 
-                         z = LAYERS['water'])
-       
-    def animate(self, dt): 
+        super().__init__(
+            pos=pos,
+            surf=self.frames[self.frame_index],
+            groups=groups,
+            z=LAYERS['water']
+        )
+
+    def animate(self, dt):
         self.frame_index += 5 * dt
         if self.frame_index >= len(self.frames):
             self.frame_index = 0
         self.image = self.frames[int(self.frame_index)]
-        
+
     def update(self, dt):
-        self.animate(dt)    
-        
+        self.animate(dt)
+
+
 class WildFlower(Generic):
-    def __init__(self, pos,surf,groups):
-        super().__init__(pos,surf,groups)
+    def __init__(self, pos, surf, groups):
+        super().__init__(pos, surf, groups)
         self.hitbox = self.rect.copy().inflate(-20, -self.rect.height * 0.9)
 
+
 class Particles(Generic):
-    def __init__(self, pos, surf, groups, z,duration=200):
+    def __init__(self, pos, surf, groups, z, duration=200):
         super().__init__(pos, surf, groups, z)
-        
-        self.start_time=pygame.time.get_ticks()
+
+        self.start_time = pygame.time.get_ticks()
         self.duration = duration
-        
+
         # superficie blanca
         mask_surf = pygame.mask.from_surface(self.image)
         new_surf = mask_surf.to_surface()
-        new_surf.set_colorkey((0,0,0))
-        
+        new_surf.set_colorkey((0, 0, 0))
+
         self.image = new_surf.convert()
         self.rect = self.image.get_rect(center=self.rect.center)
-        
-    def update(self,dt):
+
+    def update(self, dt):
         current_time = pygame.time.get_ticks()
-        if current_time-self.start_time>self.duration:
-            self.kill() #Destruimos el sprite    
-            # sprite idéntico a los originales pero pintados de blanco
+        if current_time - self.start_time > self.duration:
+            self.kill()
+
 
 class Tree(Generic):
     def __init__(self, pos, surf, groups, name, player_add):
-        super().__init__(pos,surf,groups)     
-           
-        # Atributos de los árboles
+        super().__init__(pos, surf, groups)
+
         self.health = 5
         self.alive = True
+
         stump_path = f'project/graphics/stumps/{"small" if name == "Small" else "large"}.png'
-        self.stump_surf = pygame.image.load(stump_path).convert_alpha() # como se verá el árbol una vez talado
-        # usamos f String para elegir entre dos archivos. Hay uno para árboles pequeños y otro para árboles grandes
-        # self.invul_timer = Timer(200) 
-           
-           
-        # apples
-        self.apples_surf = pygame.image.load('project/graphics/fruit/apple.png')
-        self.apple_pos=APPLE_POS[name]
-        self.apple_sprites=pygame.sprite.Group()
+        self.stump_surf = pygame.image.load(resource_path(stump_path)).convert_alpha()
+
+        self.apples_surf = pygame.image.load(resource_path('project/graphics/fruit/apple.png'))
+        self.apple_pos = APPLE_POS[name]
+        self.apple_sprites = pygame.sprite.Group()
         self.create_fruit()
-        
+
         self.player_add = player_add
-        
-        #sounds
-        self.axe_sound = pygame.mixer.Sound('project/audio/axe.mp3')
-        
-        
+
+        self.axe_sound = pygame.mixer.Sound(resource_path('project/audio/axe.mp3'))
+
     def damage(self):
-    # este método dañará los árboles
         self.health -= 1
-        
-      #  play sound
+
         self.axe_sound.play()
-        
-        
-      # eliminar una manzana
+
         if len(self.apple_sprites.sprites()) > 0:
-           random_apple = choice(self.apple_sprites.sprites())
-           Particles(
-               pos = random_apple.rect.topleft, #Esta manzana tiene la misma posicion que la original
-               surf = random_apple.image, 
-               groups = self.groups(),   # esto mete TODOS los grupos del árbol
-               z=LAYERS['fruit'])
-           
-           self.player_add('apple')
-           
-           random_apple.kill()
-      
-      
-    def check_death(self):
-        if self.health <= 0:
-            Particles(self.rect.topleft, self.image, self.groups(),LAYERS['fruit'], 300)
-            self.image = self.stump_surf
-            self.rect=self.image.get_rect(midbottom= self.rect.midbottom)
-            self.hitbox = self.rect.copy().inflate(-10,-self.rect.height * 0.6  )
-            self.alive = False
-            self.player_add('wood')
-     
-    def update(self,dt):
-        if self.alive:
-            self.check_death()
-     
-        
-    def create_fruit(self):
-     for pos in self.apple_pos:
+            random_apple = choice(self.apple_sprites.sprites())
 
-        if randint(0, 10) < 2:   # 20% de probabilidad
-
-            # pos es (offset_x, offset_y)
-            x = pos[0] + self.rect.left
-            y = pos[1] + self.rect.top
-
-            Generic(
-                pos = (x, y),
-                surf = self.apples_surf,
-                groups = [self.apple_sprites, *self.groups()],
-                z = LAYERS['fruit']
+            Particles(
+                pos=random_apple.rect.topleft,
+                surf=random_apple.image,
+                groups=self.groups(),
+                z=LAYERS['fruit']
             )
 
+            self.player_add('apple')
+            random_apple.kill()
+
+    def check_death(self):
+        if self.health <= 0:
+            Particles(
+                self.rect.topleft,
+                self.image,
+                self.groups(),
+                LAYERS['fruit'],
+                300
+            )
+
+            self.image = self.stump_surf
+            self.rect = self.image.get_rect(midbottom=self.rect.midbottom)
+            self.hitbox = self.rect.copy().inflate(-10, -self.rect.height * 0.6)
+            self.alive = False
+
+            self.player_add('wood')
+
+    def update(self, dt):
+        if self.alive:
+            self.check_death()
+
+    def create_fruit(self):
+        for pos in self.apple_pos:
+
+            if randint(0, 10) < 2:
+
+                x = pos[0] + self.rect.left
+                y = pos[1] + self.rect.top
+
+                Generic(
+                    pos=(x, y),
+                    surf=self.apples_surf,
+                    groups=[self.apple_sprites, *self.groups()],
+                    z=LAYERS['fruit']
+                )

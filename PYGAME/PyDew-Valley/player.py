@@ -2,6 +2,7 @@ import pygame
 from settings import *
 from support import *
 from timer import Timer
+from resource_path import resource_path
 
 class Player(pygame.sprite.Sprite):
     
@@ -13,11 +14,12 @@ class Player(pygame.sprite.Sprite):
         self.status = 'down_idle'
         self.frame_index = 0 
         
-        # SetUp General
         self.image = self.animations[self.status][self.frame_index]
-        # self.image.fill('green')
-        self.rect = self.image.get_rect(center = pos)
-        #Copiamos el rectángulo y le cambiamos la dimensión con inflate mientras lo mantiene centrado, en el centro.
+        self.rect = self.image.get_rect(center=pos)
+
+        # Añade esta línea
+        self.target_pos = pygame.math.Vector2(self.rect.center)
+
         self.z = LAYERS['main']
         
         # Atributos de movimiento
@@ -29,7 +31,14 @@ class Player(pygame.sprite.Sprite):
         
         self.collision_sprites = collision_sprites
         # self.hitbox = self.rect.copy().inflate((-126,-70)) #HorizontalAxis, VerticalAxis
-        self.hitbox = pygame.Rect(0, 0, self.rect.width * 0.5, self.rect.height * 0.2)
+        self.hitbox = pygame.Rect(
+            0,
+            0,
+            self.rect.width * 0.3,
+            self.rect.height * 0.2
+        )
+
+        self.hitbox.midbottom = self.rect.midbottom        
         self.hitbox.midbottom = self.rect.midbottom
 
         
@@ -77,7 +86,7 @@ class Player(pygame.sprite.Sprite):
         
         # sound
         
-        self.watering = pygame.mixer.Sound('project/audio/water.mp3')
+        self.watering = pygame.mixer.Sound(resource_path('project/audio/water.mp3'))
         self.watering.set_volume(0.2)
          
                 

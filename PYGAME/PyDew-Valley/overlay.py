@@ -1,5 +1,6 @@
 import pygame
 from settings import *
+from resource_path import resource_path
 
 
 class Overlay:
@@ -17,7 +18,7 @@ class Overlay:
         # tools
         self.tools_surf = {}
         for tool in player.tools:
-            surf = pygame.image.load(f'{overlay_path}{tool}.png').convert_alpha()
+            surf = pygame.image.load(resource_path(f'{overlay_path}{tool}.png')).convert_alpha()
             w, h = surf.get_width(), surf.get_height()
             surf = pygame.transform.scale(surf, (w * scale_factor, h * scale_factor))
             self.tools_surf[tool] = surf
@@ -25,7 +26,7 @@ class Overlay:
         # seeds
         self.seeds_surf = {}
         for seed in player.seeds:
-            surf = pygame.image.load(f'{overlay_path}{seed}.png').convert_alpha()
+            surf = pygame.image.load(resource_path(f'{overlay_path}{seed}.png')).convert_alpha()
             w, h = surf.get_width(), surf.get_height()
             surf = pygame.transform.scale(surf, (w * scale_factor, h * scale_factor))
             self.seeds_surf[seed] = surf

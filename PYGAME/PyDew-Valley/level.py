@@ -1,8 +1,18 @@
 import pygame
+from save_manager import SaveManager
 from settings import *
 from player import Player
 from overlay import Overlay
-from sprites import Generic, Water, WildFlower, Tree, Interaction, Particles
+from hud import HUD
+from sprites import (
+    Generic,
+    CollisionTile,
+    Water,
+    WildFlower,
+    Tree,
+    Interaction,
+    Particles
+)
 from pytmx.util_pygame import load_pygame
 from support import *  
 from transition import Transition
@@ -10,10 +20,12 @@ from soil import SoilLayer
 from sky import Rain, Sky
 from random import randint
 from menu import Menu
+from resource_path import resource_path
 
 class Level:
     #Esta clase ayuda a mantener el proyecto limpio y organizado
-    def __init__(self):
+    def __init__(self, player_name="Nacho"):
+        self.player_name= player_name
         self.display_surface = pygame.display.get_surface() #Este display surface es el mismo que el del main.py
         #Permite que se dibuje directamente en la pantalla que se visualiza al jugador
     
@@ -25,8 +37,9 @@ class Level:
         self.Interaction_sprites=pygame.sprite.Group()
     
         self.soil_layer = SoilLayer(self.all_sprites, self.collision_sprites)
-        self.setup()
+        self.setup() #Crea al player
         self.overlay = Overlay(self.player)
+        self.hud = HUD(self.player, self.player_name)
         self.transition = Transition(self.reset, self.player)
     
         # sky
@@ -41,16 +54,16 @@ class Level:
         self.shop_active = False
         
         #music
-        self.success = pygame.mixer.Sound('project/audio/success.wav')
+        self.success = pygame.mixer.Sound(resource_path('project/audio/success.wav'))
         self.success.set_volume(0.3)
-        self.music = pygame.mixer.Sound('project/audio/music.mp3')
+        self.music = pygame.mixer.Sound(resource_path('project/audio/music.mp3'))
         self.music.play(loops = -1)
         self.music.set_volume(0.1)
         
     def setup(self):
         
         
-        tmx_data = load_pygame('project/data/map.tmx') #Cargamos el mapa tmx
+        tmx_data = load_pygame(resource_path('project/data/map.tmx')) #Cargamos el mapa tmx
         
         # house
         for layer in ['HouseFurnitureBottom', 'HouseFloor']:
@@ -58,8 +71,13 @@ class Level:
                 Generic((x*TITLE_SIZE, y * TITLE_SIZE), surf, self.all_sprites, LAYERS['house bottom'])
 
         for layer in ['HouseWalls', 'HouseFurnitureTop']:
-             for x, y, surf in tmx_data.get_layer_by_name(layer).tiles():
-                Generic((x*TITLE_SIZE, y * TITLE_SIZE), surf, self.all_sprites)
+            for x, y, surf in tmx_data.get_layer_by_name(layer).tiles():
+                Generic(
+                    (x * TITLE_SIZE, y * TITLE_SIZE),
+                    surf,
+                    self.all_sprites,
+                    LAYERS['house top']
+                )
         
         
         # fence
@@ -93,12 +111,10 @@ class Level:
         
         # collisions tiles
         for x, y, surf in tmx_data.get_layer_by_name('Collision').tiles():
-            Generic(
+            CollisionTile(
                 (x * TITLE_SIZE, y * TITLE_SIZE),
                 pygame.Surface((TITLE_SIZE, TITLE_SIZE)),
                 self.collision_sprites
-                # Mapa de colisiones [self.all_sprites,self.collision_sprites]
-
             )
 
         
@@ -124,7 +140,7 @@ class Level:
 
         Generic( 
             pos = (0,0), 
-            surf = pygame.image.load('project/graphics/world/ground.png').convert_alpha(), 
+            surf = pygame.image.load(resource_path('project/graphics/world/ground.png')).convert_alpha(), 
             groups = self.all_sprites, 
             z = LAYERS['ground'])
 
@@ -160,6 +176,10 @@ class Level:
 
     def reset(self):
 
+
+            self.hud.day += 1
+            self.save_game()
+
             self.soil_layer.update_plants()
 
 
@@ -176,7 +196,7 @@ class Level:
                 sprite.kill()
 
             # volver a crear árboles desde el TMX
-            tmx_data = load_pygame('project/data/map.tmx')
+            tmx_data = load_pygame(resource_path('project/data/map.tmx'))
             for obj in tmx_data.get_layer_by_name('Trees'):
                 Tree(
                     pos=(obj.x, obj.y),
@@ -219,46 +239,87 @@ class Level:
         
         #Sección del clima
         
+            # HUD
         self.overlay.display()
+        self.hud.draw()
+
+        # lluvia
         if self.raining and not self.shop_active:
             self.rain.update()
-        
-        #daytime
+
+        # daytime
         self.sky.display(dt)
-        
-        #transition overlay
+
+        # transition overlay
         if self.player.sleep:
             self.transition.play()
-        print(self.player.item_inventory)
         
         #print(self.shop_active)
-        
+
+        keys = pygame.key.get_pressed()
+
+        if keys[pygame.K_F5]:
+            self.save_game()
+                
+    def save_game(self):
+
+        data = {
+            "player_name": self.player_name,
+            "day": self.hud.day,
+            "player_x": self.player.rect.centerx,
+            "player_y": self.player.rect.centery
+        }
+
+        SaveManager.save_game(data)
+
+        print("Partida guardada")
+
     
 class CameraGroup(pygame.sprite.Group):
     def __init__(self):
         super().__init__()
-        self.display_surface = pygame.display.get_surface() #Así esta clase podrá dibujar directamente en la superficie del display
+        self.display_surface = pygame.display.get_surface()
         self.offset = pygame.math.Vector2()
-        
-    def custom_draw(self, player): #Nos ayuda a pintar el player pese a ser instanciado antes que el mundo 
+
+    def custom_draw(self, player):
         self.offset.x = player.rect.centerx - SCREEN_WIDTH / 2
         self.offset.y = player.rect.centery - SCREEN_HEIGHT / 2
-        
-        
+
         for layer in LAYERS.values():
-            for sprite in sorted(self.sprites(), key = lambda sprite: sprite.rect.centery):
+            for sprite in sorted(self.sprites(), key=lambda sprite: sprite.rect.centery):
                 if sprite.z == layer:
-                 offset_rect = sprite.rect.copy()
-                 offset_rect.center -= self.offset
-                 self.display_surface.blit(sprite.image, offset_rect)
-               
-                # Debugging hitboxes
-                # if sprite == player:
-                  #  pygame.draw.rect(self.display_surface, 'red', offset_rect, 5) # dibuja el rectángulo del jugador
+                    offset_rect = sprite.rect.copy()
+                    offset_rect.center -= self.offset
+                    self.display_surface.blit(sprite.image, offset_rect)
 
-                   # hitbox_rect = player.hitbox.copy()
-                   # hitbox_rect.center = offset_rect.center
-                   # pygame.draw.rect(self.display_surface, 'green', hitbox_rect, 5) # dibuja el rectángulo de colisión del jugador
+        # DEBUG DEL JUGADOR: se dibuja una sola vez y en su posición real.
+        # Comenta estas líneas cuando termines de probar las colisiones.
+        # DEBUG DEL JUGADOR
+        if DEBUG:
 
-                   # target_pos = offset_rect.center + PLAYER_TOOL_OFFSET[player.status.split('_')[0]]
-                   # pygame.draw.circle(self.display_surface, 'blue', target_pos, 5) # dibuja la posición objetivo del jugador
+            player_rect = player.rect.copy()
+            player_rect.center -= self.offset
+            pygame.draw.rect(
+                self.display_surface,
+                'red',
+                player_rect,
+                3
+            )
+
+            player_hitbox = player.hitbox.copy()
+            player_hitbox.center -= self.offset
+            pygame.draw.rect(
+                self.display_surface,
+                'green',
+                player_hitbox,
+                3
+            )
+
+            if hasattr(player, 'target_pos'):
+                target_pos = player.target_pos - self.offset
+                pygame.draw.circle(
+                    self.display_surface,
+                    'blue',
+                    target_pos,
+                    5
+                )

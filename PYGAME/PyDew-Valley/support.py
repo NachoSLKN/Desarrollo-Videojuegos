@@ -1,7 +1,9 @@
 from os import walk # modulo que nos permite andar a través de carpetas
 import pygame
+from resource_path import resource_path
 
 def import_folder(path): #Funcion que importa el contenido de una carpeta y lo guarda en superficies
+    path = resource_path(path)
     surface_list = []
     
     for _, __, img_files in walk(path): #Devuelve una lista con todos los contenidos de las carpetas.
@@ -12,6 +14,7 @@ def import_folder(path): #Funcion que importa el contenido de una carpeta y lo g
     return surface_list 
 
 def import_folder_dict(path):
+    path = resource_path(path)
     surface_dict = {}
     
     for _, __, img_files in walk(path): #Devuelve una lista con todos los contenidos de las carpetas.

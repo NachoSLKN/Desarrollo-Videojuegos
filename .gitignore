@@ -21,10 +21,6 @@ UserSettings/
 *.booproj
 *.svd
 *.userprefs
-
-# ========================
-# Unity generated
-# ========================
 .vs/
 obj/
 *.csproj.AssemblyReference.cache
@@ -44,8 +40,30 @@ obj/
 Thumbs.db
 *.tgz
 
+# ========================
 # Python
+# ========================
 __pycache__/
-*.pyc
+*.py[cod]
+*.pyd
 
+# ========================
+# Entornos virtuales
+# ========================
+.venv/
+venv/
+env/
 
+# ========================
+# PyInstaller
+# ========================
+build/
+dist/
+*.spec
+*.exe
+
+# ========================
+# Archivos generados
+# ========================
+*.zip
+savegame.json
