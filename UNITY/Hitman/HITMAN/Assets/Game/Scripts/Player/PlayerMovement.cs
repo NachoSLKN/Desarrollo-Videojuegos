@@ -1,26 +1,50 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [Header("Script Ref")]
-
-    InputManager inputManager;
+    [Header("Script References")]
+    private InputManager inputManager;
+    private Rigidbody playerRigidbody;
 
     [Header("Movement")]
-    Vector3 moveDirection;
-
     public Transform camObject;
 
-    Rigidbody playerRigidbody;
-
-    public float movementSpeed = 2f;
+    public float walkingSpeed = 2f;
+    public float runningSpeed = 5f;
     public float rotationSpeed = 12f;
 
-    void Awake()
+    [Header("Movement Flags")]
+    public bool isRunning;
+    public bool isMoving;
+
+    private Vector3 moveDirection;
+
+    private float characterHealth = 100f;
+    public float presentHealth;
+
+    [Header("Death")]
+    public Animator animator;
+    private bool isDead = false;
+
+    [Header("Foot Steps")]
+    public AudioSource leftFootAudioSource;
+    public AudioSource rightFootAudioSource;
+    public AudioClip[] footstepsSounds;
+    public float walkingFootstepsInterval = 0.5f;
+    public float runningFootstepsInterval = 0.35f;
+    private float nextFootstepTime;
+    private bool isLeftFootstep = true;
+
+    [Header("Ground Check")]
+    private bool isGrounded;
+
+    private void Awake()
     {
         inputManager = GetComponent<InputManager>();
         playerRigidbody = GetComponent<Rigidbody>();
+        presentHealth = characterHealth;
     }
 
     public void HandleAllMovement()
@@ -29,40 +53,186 @@ public class PlayerMovement : MonoBehaviour
         HandleRotation();
     }
 
-    void HandleMovement()
+    private void HandleMovement()
     {
-        // Seteamos el movimiento usando nuestros inputs,
-        // calculamos la dirección en base a la cámara y el input.
-        moveDirection = camObject.forward * inputManager.verticalInput;
-        moveDirection = moveDirection + camObject.right * inputManager.horizontalInput;
+        if (camObject == null)
+        {
+            Debug.LogError(
+                "PlayerMovement: Cam Object no está asignado.",
+                this
+            );
 
-        // Normalizamos
-        moveDirection.Normalize();
-        moveDirection.y = 0;
+            return;
+        }
 
-        // Determinamos el movimiento final
-        moveDirection = moveDirection * movementSpeed;
+        moveDirection =
+            camObject.forward * inputManager.verticalInput +
+            camObject.right * inputManager.horizontalInput;
 
-        Vector3 movementVelocity = moveDirection;
-        playerRigidbody.angularVelocity = movementVelocity;
-    }
+        moveDirection.y = 0f;
 
-    void HandleRotation()
-    {
-        Vector3 targetDirection = Vector3.zero;
+        if (moveDirection.sqrMagnitude > 1f)
+        {
+            moveDirection.Normalize();
+        }
 
-        targetDirection = camObject.forward * inputManager.verticalInput;
-        targetDirection = targetDirection + camObject.right * inputManager.horizontalInput;
-        targetDirection.Normalize();
-        targetDirection.y = 0;
+        isMoving = inputManager.moveAmount > 0.01f;
 
-        Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
-        Quaternion playerRotation = Quaternion.Slerp(
-            transform.rotation,
-            targetRotation,
-            rotationSpeed * Time.deltaTime
+        float currentSpeed = 0f;
+
+        if (isMoving)
+        {
+            currentSpeed = isRunning
+                ? runningSpeed
+                : walkingSpeed;
+        }
+
+        Vector3 horizontalVelocity =
+            moveDirection * currentSpeed;
+
+        // Conservamos la velocidad vertical del Rigidbody.
+        Vector3 finalVelocity = new Vector3(
+            horizontalVelocity.x,
+            playerRigidbody.linearVelocity.y,
+            horizontalVelocity.z
         );
 
-        transform.rotation = playerRotation;
+        playerRigidbody.linearVelocity = finalVelocity;
     }
+
+    private void HandleRotation()
+    {
+        // Al caminar hacia atrás mantenemos la orientación actual.
+        if (
+            inputManager.verticalInput < -0.01f &&
+            Mathf.Abs(inputManager.horizontalInput) < 0.01f
+        )
+        {
+            return;
+        }
+
+        Vector3 targetDirection =
+            camObject.forward * inputManager.verticalInput +
+            camObject.right * inputManager.horizontalInput;
+
+        targetDirection.y = 0f;
+
+        // No rotamos si no existe una dirección de movimiento.
+        if (targetDirection.sqrMagnitude < 0.001f)
+        {
+            return;
+        }
+
+        targetDirection.Normalize();
+
+        Quaternion targetRotation =
+            Quaternion.LookRotation(targetDirection);
+
+        Quaternion smoothRotation =
+            Quaternion.Slerp(
+                playerRigidbody.rotation,
+                targetRotation,
+                rotationSpeed * Time.fixedDeltaTime
+            );
+
+        playerRigidbody.MoveRotation(smoothRotation);
+    }
+
+
+    void Update()
+    {
+        isGrounded = Physics.Raycast(
+            transform.position + Vector3.up * 0.1f,
+            Vector3.down,
+            0.3f
+        );
+
+        float footstepInterval =
+            isRunning ? runningFootstepsInterval : walkingFootstepsInterval;
+
+        // Si dejamos de movernos, cortamos inmediatamente los pasos
+        if (!isMoving || !isGrounded)
+        {
+            leftFootAudioSource.Stop();
+            rightFootAudioSource.Stop();
+
+            nextFootstepTime = Time.time;
+            return;
+        }
+
+        if (Time.time >= nextFootstepTime)
+        {
+            PlayFootstepsSound();
+            nextFootstepTime = Time.time + footstepInterval;
+        }
+    }
+
+
+    public void characterHitDamage(float takeDamage)
+    {
+        presentHealth -= takeDamage;
+
+        if (presentHealth <= 0)
+        {
+            //animator.SetBool("Die", true);
+            characterDie();
+        }
+
+    }
+
+
+    //void characterDie()
+    //{
+    //    if (isDead)
+    //        return;
+
+    //    isDead = true;
+
+    //    Debug.Log("Player Died");
+
+    //    // Detenemos al jugador
+    //    playerRigidbody.linearVelocity = Vector3.zero;
+
+    //    // Animación de muerte
+    //    if (animator != null)
+    //    {
+    //        animator.SetTrigger("Die");
+    //    }
+
+    //    StartCoroutine(ReturnToMainMenuAfterDeath());
+    //}
+
+
+    void characterDie()
+    {
+        Debug.Log("Player Died");
+
+        SceneManager.LoadScene("MainMenu");
+    }
+
+
+    private void PlayFootstepsSound()
+    {
+
+
+
+        AudioSource footAudioSource = isLeftFootstep ? leftFootAudioSource : rightFootAudioSource;
+
+
+        if (footstepsSounds.Length > 0)
+        {
+            AudioClip clip = footstepsSounds[Random.Range(0, footstepsSounds.Length)];
+            footAudioSource.PlayOneShot(clip);
+        }
+        isLeftFootstep = !isLeftFootstep;   
+
+    }
+
+    private IEnumerator ReturnToMainMenuAfterDeath()
+    {
+        yield return new WaitForSeconds(3f);
+
+        SceneManager.LoadScene("MainMenu");
+    }
+
 }

@@ -1,0 +1,73 @@
+# ==========================================
+# Unity generated folders
+# ==========================================
+
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Ll]ogs/
+[Uu]ser[Ss]ettings/
+[Mm]emoryCaptures/
+[Rr]ecordings/
+
+# ==========================================
+# Builds
+# ==========================================
+
+[Bb]uild/
+[Bb]uilds/
+
+# ==========================================
+# IDE / Visual Studio / VS Code
+# ==========================================
+
+.vs/
+.vscode/
+.idea/
+
+*.csproj
+*.sln
+*.suo
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+
+# ==========================================
+# Unity generated files
+# ==========================================
+
+sysinfo.txt
+
+*.apk
+*.aab
+*.unitypackage
+
+# ==========================================
+# Crash reports
+# ==========================================
+
+crashlytics-build.properties
+
+# ==========================================
+# OS generated files
+# ==========================================
+
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Visual Studio / Unity 6
+*.slnx
+
+# FMOD generated logs
+fmod_editor.log
+*.log
+
+# Unity recovery scenes
+**/Assets/_Recovery/
