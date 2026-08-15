@@ -1,0 +1,36 @@
+﻿# Unity generated
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Ll]ogs/
+[Uu]ser[Ss]ettings/
+[Mm]emoryCaptures/
+# Builds
+[Bb]uild/
+[Bb]uilds/
+# IDE
+.vs/
+.vscode/
+.idea/
+*.csproj
+*.sln
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+# Android builds
+*.apk
+*.aab
+# Third-party Asset Store content
+Assets/Unity Assets/
+# Large source character files
+Assets/Dead Earth/Models/Mixamo Characters/swat.fbx
+Assets/Dead Earth/Models/Mixamo Characters/zombie.fbx
+# OS
+.DS_Store
+Thumbs.db

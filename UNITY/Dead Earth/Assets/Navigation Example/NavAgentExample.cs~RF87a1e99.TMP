@@ -1,0 +1,68 @@
+using UnityEngine;
+using UnityEngine.AI;
+using System.Collections; 
+
+
+[RequireComponent(typeof(NavMeshAgent))]
+
+        public class NavAgentExample : MonoBehaviour
+{
+
+
+    //Inspector Assigned Variable
+    public AIWaypointNetwork WaypointNetwork = null;
+    public int CurrentIndex = 0;
+
+    //Private Members
+    private NavMeshAgent _navAgent = null;
+
+
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
+    {
+
+
+        _navAgent = GetComponent<NavMeshAgent>();
+
+        if (WaypointNetwork == null) return;
+
+        //if (WaypointNetwork.waypoints[CurrentIndex] != null)
+        //{
+        //    _navAgent.destination = WaypointNetwork.waypoints[CurrentIndex].position;
+        //}
+
+
+    }
+
+
+    void SetNextDestination (bool increment)
+    {
+        if (!WaypointNetwork) return; 
+
+        int incStep = increment?1:0;
+        Transform nextWaypointTransform = null; 
+
+        while (nextWaypointTransform == null)
+        {
+            int nextWaypoint = (CurrentIndex+incStep>= WaypointNetwork.Waypoints.Count) ? 0 : CurrentIndex+incStep;
+            nextWaypointTransform = WaypointNetwork.Waypoints[nextWaypoint];
+
+            if (nextWaypointTransform != null)
+            {
+                CurrentIndex = nextWaypoint;
+                _navAgent.destination = nextWaypointTransform.position; 
+
+            }
+
+        }
+
+
+    }
+
+
+
+    void Update()
+    {
+        
+    }
+}
