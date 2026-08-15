@@ -1,4 +1,4 @@
-{
+﻿{
   "games": [
     {
       "id": "hitman",
@@ -49,7 +49,7 @@
       "engine": "Adventure Game Studio",
       "folder": "AGS/INSPECTORAGS",
       "status": "Proyecto",
-      "description": "Aventura gráfica desarrollada con Adventure Game Studio.",
+      "description": "Aventura grÃ¡fica desarrollada con Adventure Game Studio.",
       "tags": [
         "AGS",
         "Adventure",
@@ -79,7 +79,7 @@
       "engine": "Unity",
       "folder": "UNITY/Elden Ring",
       "status": "Proyecto",
-      "description": "Prototipo de acción y combate desarrollado con Unity.",
+      "description": "Prototipo de acciÃ³n y combate desarrollado con Unity.",
       "tags": [
         "Unity",
         "C#",
@@ -95,12 +95,12 @@
       "engine": "Unity",
       "folder": "UNITY/Don Quijote de la Mancha",
       "status": "En desarrollo",
-      "description": "ARPG isométrico inspirado en Don Quijote, con combate y exploración estilo Diablo.",
+      "description": "ARPG isomÃ©trico inspirado en Don Quijote, con combate y exploraciÃ³n estilo Diablo.",
       "tags": [
         "Unity",
         "C#",
         "ARPG",
-        "Isométrico"
+        "IsomÃ©trico"
       ],
       "github": "https://github.com/NachoSLKN/Desarrollo-Videojuegos/tree/main/UNITY/Don%20Quijote%20de%20la%20Mancha",
       "readme": "https://github.com/NachoSLKN/Desarrollo-Videojuegos/blob/main/UNITY/Don%20Quijote%20de%20la%20Mancha/README.md",
@@ -112,20 +112,21 @@
       "id": "iron-giant",
       "title": "Gigante de Hierro",
       "engine": "Unity",
-      "folder": "UNITY/IRONGIANT",
+      "folder": "UNITY/IRON GIANT",
       "status": "En desarrollo",
-      "description": "Demo 3D del Gigante de Hierro con locomoción, vuelo y sistemas interactivos.",
+      "description": "Demo 3D del Gigante de Hierro con locomociÃ³n, vuelo y sistemas interactivos.",
       "tags": [
         "Unity",
         "C#",
         "Blender",
         "3D"
       ],
-      "github": "https://github.com/NachoSLKN/Desarrollo-Videojuegos/tree/main/UNITY/IRONGIANT",
-      "readme": "https://github.com/NachoSLKN/Desarrollo-Videojuegos/blob/main/UNITY/IRONGIANT/README.md",
-      "imageUrl": "https://raw.githubusercontent.com/NachoSLKN/Desarrollo-Videojuegos/main/UNITY/IRONGIANT/Portada.png",
+      "github": "https://github.com/NachoSLKN/Desarrollo-Videojuegos/tree/main/UNITY/IRON GIANT",
+      "readme": "https://github.com/NachoSLKN/Desarrollo-Videojuegos/blob/main/UNITY/IRON GIANT/README.md",
+      "imageUrl": "https://raw.githubusercontent.com/NachoSLKN/Desarrollo-Videojuegos/main/UNITY/IRON GIANT/Portada.png",
       "development": "https://youtu.be/KEFSmnB2Yjk",
       "gameplayLabel": "VER DESARROLLO"
     }
   ]
 }
+
