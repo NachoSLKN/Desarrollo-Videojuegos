@@ -70,7 +70,8 @@
         "GDScript"
       ],
       "github": "https://github.com/NachoSLKN/Desarrollo-Videojuegos/tree/main/GODOT/The%20Leyend%20Of%20Godette",
-      "readme": "https://github.com/NachoSLKN/Desarrollo-Videojuegos/blob/main/GODOT/The%20Leyend%20Of%20Godette/README.md"
+      "readme": "https://github.com/NachoSLKN/Desarrollo-Videojuegos/blob/main/GODOT/The%20Leyend%20Of%20Godette/README.md",
+      "imageUrl": "https://raw.githubusercontent.com/NachoSLKN/Desarrollo-Videojuegos/main/GODOT/The%20Leyend%20Of%20Godette/Portada.png"
     },
     {
       "id": "elden-ring",
@@ -85,13 +86,14 @@
         "Action RPG"
       ],
       "github": "https://github.com/NachoSLKN/Desarrollo-Videojuegos/tree/main/UNITY/Elden%20Ring",
-      "readme": "https://github.com/NachoSLKN/Desarrollo-Videojuegos/blob/main/UNITY/Elden%20Ring/README.md"
+      "readme": "https://github.com/NachoSLKN/Desarrollo-Videojuegos/blob/main/UNITY/Elden%20Ring/README.md",
+      "imageUrl": "https://raw.githubusercontent.com/NachoSLKN/Desarrollo-Videojuegos/main/UNITY/Elden%20Ring/Portada.png"
     },
     {
       "id": "quijote",
       "title": "Don Quijote",
       "engine": "Unity",
-      "folder": "UNITY/Quijote",
+      "folder": "UNITY/Don Quijote de la Mancha",
       "status": "En desarrollo",
       "description": "ARPG isométrico inspirado en Don Quijote, con combate y exploración estilo Diablo.",
       "tags": [
@@ -100,9 +102,9 @@
         "ARPG",
         "Isométrico"
       ],
-      "github": "https://github.com/NachoSLKN/Desarrollo-Videojuegos/tree/main/UNITY/Quijote",
-      "readme": "https://github.com/NachoSLKN/Desarrollo-Videojuegos/blob/main/UNITY/Quijote/README.md",
-      "imageUrl": "https://raw.githubusercontent.com/NachoSLKN/Desarrollo-Videojuegos/main/UNITY/Quijote/Portada.png",
+      "github": "https://github.com/NachoSLKN/Desarrollo-Videojuegos/tree/main/UNITY/Don%20Quijote%20de%20la%20Mancha",
+      "readme": "https://github.com/NachoSLKN/Desarrollo-Videojuegos/blob/main/UNITY/Don%20Quijote%20de%20la%20Mancha/README.md",
+      "imageUrl": "https://raw.githubusercontent.com/NachoSLKN/Desarrollo-Videojuegos/main/UNITY/Don%20Quijote%20de%20la%20Mancha/Portada.png",
       "development": "https://youtube.com/live/R5Y4QydT8Pc?feature=share",
       "gameplayLabel": "VER DESARROLLO"
     },
