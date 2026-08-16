@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://da8vgj3rchj5q"]
+
+[ext_resource type="PackedScene" uid="uid://dl8ch0ywied8j" path="res://scenes/entities/player/player.tscn" id="1_377w7"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ftxyw"]
+sky_top_color = Color(0.13858914, 0.49061805, 0.6179709, 1)
+sky_horizon_color = Color(0.5828999, 0.6631571, 0.68599534, 1)
+ground_horizon_color = Color(0.5828999, 0.6631571, 0.68599534, 1)
+
+[sub_resource type="Sky" id="Sky_377w7"]
+sky_material = SubResource("ProceduralSkyMaterial_ftxyw")
+
+[sub_resource type="Environment" id="Environment_bovvr"]
+background_mode = 2
+sky = SubResource("Sky_377w7")
+ambient_light_color = Color(0.542318, 0.542318, 0.542318, 1)
+ambient_light_energy = 3.9
+glow_enabled = true
+fog_enabled = true
+fog_light_color = Color(0.51930046, 0.55359477, 0.60005087, 1)
+fog_light_energy = 2.28
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bhunq"]
+size = Vector3(40, 0.5, 40)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_377w7"]
+size = Vector3(10, 10, 1)
+
+[node name="Level" type="Node3D" unique_id=475343804]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=259086818]
+environment = SubResource("Environment_bovvr")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1433616539]
+transform = Transform3D(0.43680173, 0.8995578, 3.932092e-08, 0, -4.371139e-08, 1, 0.8995578, -0.43680173, -1.909321e-08, 0, 0, 0)
+light_color = Color(1, 1, 0.75686276, 1)
+light_energy = 0.0
+shadow_enabled = true
+
+[node name="Entitites" type="Node3D" parent="." unique_id=1351853962]
+
+[node name="Player" parent="Entitites" unique_id=751367289 instance=ExtResource("1_377w7")]
+
+[node name="Environment" type="Node3D" parent="." unique_id=1105826109]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Environment" unique_id=1488588072]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Environment/StaticBody3D" unique_id=2037183884]
+size = Vector3(40, 0.5, 40)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/StaticBody3D" unique_id=855357616]
+shape = SubResource("BoxShape3D_bhunq")
+
+[node name="StaticBody2D" type="StaticBody3D" parent="Environment" unique_id=662137306]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.98045254, 4.9663944, 6.6138062)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Environment/StaticBody2D" unique_id=1538821050]
+size = Vector3(10, 10, 1)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/StaticBody2D" unique_id=2052353675]
+transform = Transform3D(0.99826825, 0.056033127, 0.017912678, -0.05641167, 0.9981787, 0.021376107, -0.01668229, -0.02234957, 0.999611, 0, 0, 0)
+shape = SubResource("BoxShape3D_377w7")

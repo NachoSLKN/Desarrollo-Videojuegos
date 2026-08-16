@@ -1,0 +1,29 @@
+# Godot 4+
+.godot/
+
+# Godot import files
+.import/
+
+# Export configuration
+export.cfg
+export_presets.cfg
+
+# Imported translations
+*.translation
+
+# C# / Mono generated files
+.mono/
+data_*/
+mono_crash.*.json
+
+# IDE
+.vscode/
+.idea/
+*.sln
+*.csproj
+*.user
+
+# Windows / macOS
+Thumbs.db
+desktop.ini
+.DS_Store

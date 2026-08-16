@@ -2,6 +2,15 @@
 
 ![Portada](screenshots/portada.png)
 
+## 📸 Capturas del proyecto
+
+![Captura 1](screenshots/1.JPG)
+
+![Captura 2](screenshots/2.JPG)
+
+![Captura 3](screenshots/3.JPG)
+
+
 Este proyecto es un ejercicio práctico basado en un tutorial de desarrollo 3D en **Godot**, donde se crea un juego inspirado en *Breath of the Wild*.  
 A lo largo del desarrollo se aprenden las bases del 3D, movimiento, animaciones, combate, enemigos, niveles y efectos visuales.
 
