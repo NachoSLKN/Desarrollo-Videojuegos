@@ -1,0 +1,67 @@
+Hay muchos archivos extras. Compilador o debugeador. 
+
+//------------------RUTAS RELATIVAS Y RUTAS ABSOLUTAS-------------------------------//
+
+/*Cuando hablamos de path, sabemos que puede ser relativa o absoluta, ejemplo de ruta relativa:
+io_file_read("assets/shaders/basic.vert"); en vez de escribir una ruta absoluta: E:\NACHO\ESTUDIO\PROYECTOS\... 
+Una ruta relativa se interpreta desde el directorio desde el que ejecutas el programa.
+Es muchísimo mejor que poner una ruta absoluta de nuestro PC, porque al subir el proyecto, por ejemplo a Github o sea 
+ejecutado por cualquier otra persona, pues obviamente no tendrá acceso a E:\NACHO\...
+Y esto es un motor es muy importante ya que io_file_read() se utilizará después para cargar cosas como shaders,
+mapas etc. */
+
+
+/*io.h -> declara que ofrece el módulo
+io.c -> implementa cómo funciona*/
+
+/*io.c contiene normalmente la implementación, es decir, lo que realmente hace esa función.
+#include "io.h"
+void io_init(){
+//código real
+}*/ 
+
+
+//En io.h definimos File io_file_read (const char *path); y io.c lo va a implementar.
+
+//VAO = Vertex Array Object. Sirve para recordar cómo están configurados los atributos de los vértices.
+/*(-1,1) ------- (1,1)
+   |              |        //Para un Quad por ejemplo.
+   |              |  
+(-1,-1) ------ (1,-1)*/
+
+
+//El VAO guarda la configuración necesaria para que OpenGL sepa interpretar esos vértices.
+//VBO = Vertex Buffer Object: Buffer que contiene los datos de los vértices. 
+//EBO = Element Buffer Object: Guarda los índices que indican en qué orden usar los vértices para formar triángulos. Un Quad normalmente se dibuja con dos triángulos. 
+/*0 ----- 1
+| \     |
+|   \   |
+|     \ |
+3 ----- 2*/
+
+
+//La matriz de proyección va a ser fundamental ya que transformará coordenadas del mundo a coordenadas que OPENGL puede mostrar. 
+
+
+/*render.c
+   │
+   └── render_shader_create(
+           "shaders/default.vert",
+           "shaders/default.frag"
+       )
+              │
+              ▼
+         io_file_read()
+              │
+       ┌──────┴──────┐
+       ▼             ▼
+ default.vert    default.frag
+       │             │
+       ▼             ▼
+ Vertex Shader   Fragment Shader
+       └──────┬──────┘
+              ▼
+       OpenGL Shader Program*/
+
+
+       
