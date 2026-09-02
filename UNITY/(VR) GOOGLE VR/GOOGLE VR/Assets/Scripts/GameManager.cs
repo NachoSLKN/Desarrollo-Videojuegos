@@ -1,26 +1,36 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     public Image imgFade;
+    public float fadeDuration = 2f;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-
-        Invoke("Fade", 1f); //Usamos Invoke para llamar a la función Fade después de 1 segundo
-
-
+        StartCoroutine(FadeOut());
     }
 
-    private void Fade()
+    private IEnumerator FadeOut()
     {
-        imgFade.CrossFadeAlpha(0f, 2f, true); // Alfa, duration, ignoreTimeScale
+        Color c = imgFade.color;
+        c.a = 1f;
+        imgFade.color = c;
 
+        float time = 0f;
+
+        while (time < fadeDuration)
+        {
+            time += Time.deltaTime;
+
+            c.a = Mathf.Lerp(1f, 0f, time / fadeDuration);
+            imgFade.color = c;
+
+            yield return null;
+        }
+
+        c.a = 0f;
+        imgFade.color = c;
     }
-
-
 }

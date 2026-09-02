@@ -5,7 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Hello VR Base.unity
     guid: 24440cb763c8a0c449ba96fb8fb56b0e
+  - enabled: 1
+    path: Assets/Proyecto - Inmobiliaria/Scenes/Proyecto - Inmobiliaria.unity
+    guid: 4c2e384283b179b4ea2b87eefa9e6ee7
   m_configObjects: {}
