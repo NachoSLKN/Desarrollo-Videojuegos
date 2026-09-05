@@ -126,7 +126,24 @@
       "imageUrl": "https://raw.githubusercontent.com/NachoSLKN/Desarrollo-Videojuegos/main/UNITY/IRON GIANT/Portada.png",
       "development": "https://youtu.be/KEFSmnB2Yjk",
       "gameplayLabel": "VER DESARROLLO"
+    },
+    {
+      "id": "google-vr",
+      "title": "Google VR",
+      "engine": "Unity",
+      "folder": "UNITY/(VR) GOOGLE VR",
+      "status": "Finalizado",
+      "description": "Colección de experiencias de realidad virtual desarrolladas con Unity y Google VR, centradas en locomoción, interacción, entornos inmersivos y experiencias educativas.",
+      "tags": [
+        "Unity",
+        "C#",
+        "VR",
+        "Google VR",
+        "WebGL"
+      ],
+      "github": "https://github.com/NachoSLKN/Desarrollo-Videojuegos/tree/main/UNITY/(VR)%20GOOGLE%20VR",
+      "readme": "https://github.com/NachoSLKN/Desarrollo-Videojuegos/blob/main/UNITY/(VR)%20GOOGLE%20VR/README.md",
+      "imageUrl": "https://raw.githubusercontent.com/NachoSLKN/Desarrollo-Videojuegos/main/UNITY/(VR)%20GOOGLE%20VR/Portada.png"
     }
   ]
 }
-
