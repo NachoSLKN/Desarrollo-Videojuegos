@@ -1,4 +1,4 @@
-﻿# Google VR â€” Unity Virtual Reality Projects
+# Google VR — Unity Virtual Reality Projects
 
 A collection of virtual reality projects developed in Unity during my training in VR development with Google VR.
 
@@ -118,7 +118,7 @@ Standalone Windows builds can also be generated for desktop use.
 ## Certificate
 
 **EXPERTO en Realidad Virtual con Unity y Google VR**  
-Udemy â€” September 2026  
+Udemy — September 2026
 Instructor: Mariano Sosa
 
 [View / Download Certificate (PDF)](Certificate/UC-1dfb37ee-5726-4773-82f0-b7121343dd4a.pdf)
@@ -129,7 +129,7 @@ Instructor: Mariano Sosa
 
 ## Author
 
-**Ignacio LiÃ±Ã¡n Vicente**
+**Ignacio Liñán Vicente**
 
 Game Development / Software Development
 
