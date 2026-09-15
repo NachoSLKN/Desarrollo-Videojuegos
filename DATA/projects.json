@@ -1,149 +1,167 @@
 ﻿{
-  "games": [
-    {
-      "id": "hitman",
-      "title": "Hitman: The Temple Sun",
-      "engine": "Unity",
-      "folder": "UNITY/Hitman",
-      "status": "En desarrollo",
-      "description": "Demo de sigilo en tercera persona inspirada en Hitman.",
-      "tags": [
-        "Unity",
-        "C#",
-        "Stealth"
-      ],
-      "github": "https://github.com/NachoSLKN/Desarrollo-Videojuegos/tree/main/UNITY/Hitman",
-      "readme": "https://github.com/NachoSLKN/Desarrollo-Videojuegos/blob/main/UNITY/Hitman/README.MD",
-      "imageUrl": "https://raw.githubusercontent.com/NachoSLKN/Desarrollo-Videojuegos/main/UNITY/Hitman/Portada.png",
-      "development": "https://youtu.be/oCQWSZgxsfI",
-      "gameplayLabel": "VER DESARROLLO"
-    },
-    {
-      "id": "pydew",
-      "title": "PyDew Valley",
-      "engine": "Pygame",
-      "folder": "PYGAME/PyDew-Valley",
-      "status": "Demo publicada",
-      "description": "Juego de granja desarrollado con Python y Pygame, disponible para Windows y navegador.",
-      "tags": [
-        "Python",
-        "Pygame",
-        "Windows",
-        "Web"
-      ],
-      "github": "https://github.com/NachoSLKN/Desarrollo-Videojuegos/tree/main/PYGAME/PyDew-Valley",
-      "githubPc": "https://github.com/NachoSLKN/Desarrollo-Videojuegos/tree/main/PYGAME/PyDew-Valley/PyDew-Valley-PC",
-      "githubWeb": "https://github.com/NachoSLKN/Desarrollo-Videojuegos/tree/main/PYGAME/PyDew-Valley/PyDew-Valley-WEB",
-      "readme": "https://github.com/NachoSLKN/Desarrollo-Videojuegos/blob/main/PYGAME/PyDew-Valley/PyDew-Valley-PC/README.md",
-      "imageUrl": "https://raw.githubusercontent.com/NachoSLKN/Desarrollo-Videojuegos/main/PYGAME/PyDew-Valley/PyDew-Valley-PC/Portada.png",
-      "gameplay": "https://youtu.be/X5yHedo7cYY",
-      "gameplayLabel": "VER GAMEPLAY",
-      "itchUrl": "https://nachoslkn.itch.io/pydew-valley",
-      "playUrl": "https://nachoslkn.itch.io/pydew-valley",
-      "embedUrl": "./games/pydew-valley/index.html",
-      "downloadUrl": "https://nachoslkn.itch.io/pydew-valley"
-    },
-    {
-      "id": "inspector-ags",
-      "title": "The Inspector",
-      "engine": "Adventure Game Studio",
-      "folder": "AGS/INSPECTORAGS",
-      "status": "Proyecto",
-      "description": "Aventura grÃ¡fica desarrollada con Adventure Game Studio.",
-      "tags": [
-        "AGS",
-        "Adventure",
-        "Point & Click"
-      ],
-      "github": "https://github.com/NachoSLKN/Desarrollo-Videojuegos/tree/main/AGS/INSPECTORAGS",
-      "readme": "https://github.com/NachoSLKN/Desarrollo-Videojuegos/tree/main/AGS/INSPECTORAGS#readme"
-    },
-    {
-      "id": "godette",
-      "title": "The Leyend of Godette",
-      "engine": "Godot",
-      "folder": "GODOT/The Leyend Of Godette",
-      "status": "Proyecto",
-      "description": "Proyecto de videojuego desarrollado con Godot.",
-      "tags": [
-        "Godot",
-        "GDScript"
-      ],
-      "github": "https://github.com/NachoSLKN/Desarrollo-Videojuegos/tree/main/GODOT/The%20Leyend%20Of%20Godette",
-      "readme": "https://github.com/NachoSLKN/Desarrollo-Videojuegos/blob/main/GODOT/The%20Leyend%20Of%20Godette/README.md",
-      "imageUrl": "https://raw.githubusercontent.com/NachoSLKN/Desarrollo-Videojuegos/main/GODOT/The%20Leyend%20Of%20Godette/Portada.png"
-    },
-    {
-      "id": "elden-ring",
-      "title": "Elden Ring Prototype",
-      "engine": "Unity",
-      "folder": "UNITY/Elden Ring",
-      "status": "Proyecto",
-      "description": "Prototipo de acciÃ³n y combate desarrollado con Unity.",
-      "tags": [
-        "Unity",
-        "C#",
-        "Action RPG"
-      ],
-      "github": "https://github.com/NachoSLKN/Desarrollo-Videojuegos/tree/main/UNITY/Elden%20Ring",
-      "readme": "https://github.com/NachoSLKN/Desarrollo-Videojuegos/blob/main/UNITY/Elden%20Ring/README.md",
-      "imageUrl": "https://raw.githubusercontent.com/NachoSLKN/Desarrollo-Videojuegos/main/UNITY/Elden%20Ring/Portada.png"
-    },
-    {
-      "id": "quijote",
-      "title": "Don Quijote",
-      "engine": "Unity",
-      "folder": "UNITY/Don Quijote de la Mancha",
-      "status": "En desarrollo",
-      "description": "ARPG isomÃ©trico inspirado en Don Quijote, con combate y exploraciÃ³n estilo Diablo.",
-      "tags": [
-        "Unity",
-        "C#",
-        "ARPG",
-        "IsomÃ©trico"
-      ],
-      "github": "https://github.com/NachoSLKN/Desarrollo-Videojuegos/tree/main/UNITY/Don%20Quijote%20de%20la%20Mancha",
-      "readme": "https://github.com/NachoSLKN/Desarrollo-Videojuegos/blob/main/UNITY/Don%20Quijote%20de%20la%20Mancha/README.md",
-      "imageUrl": "https://raw.githubusercontent.com/NachoSLKN/Desarrollo-Videojuegos/main/UNITY/Don%20Quijote%20de%20la%20Mancha/Portada.png",
-      "development": "https://youtube.com/live/R5Y4QydT8Pc?feature=share",
-      "gameplayLabel": "VER DESARROLLO"
-    },
-    {
-      "id": "iron-giant",
-      "title": "Gigante de Hierro",
-      "engine": "Unity",
-      "folder": "UNITY/IRON GIANT",
-      "status": "En desarrollo",
-      "description": "Demo 3D del Gigante de Hierro con locomociÃ³n, vuelo y sistemas interactivos.",
-      "tags": [
-        "Unity",
-        "C#",
-        "Blender",
-        "3D"
-      ],
-      "github": "https://github.com/NachoSLKN/Desarrollo-Videojuegos/tree/main/UNITY/IRON GIANT",
-      "readme": "https://github.com/NachoSLKN/Desarrollo-Videojuegos/blob/main/UNITY/IRON GIANT/README.md",
-      "imageUrl": "https://raw.githubusercontent.com/NachoSLKN/Desarrollo-Videojuegos/main/UNITY/IRON GIANT/Portada.png",
-      "development": "https://youtu.be/KEFSmnB2Yjk",
-      "gameplayLabel": "VER DESARROLLO"
-    },
-    {
-      "id": "google-vr",
-      "title": "Google VR",
-      "engine": "Unity",
-      "folder": "UNITY/(VR) GOOGLE VR",
-      "status": "Finalizado",
-      "description": "Colección de experiencias de realidad virtual desarrolladas con Unity y Google VR, centradas en locomoción, interacción, entornos inmersivos y experiencias educativas.",
-      "tags": [
-        "Unity",
-        "C#",
-        "VR",
-        "Google VR",
-        "WebGL"
-      ],
-      "github": "https://github.com/NachoSLKN/Desarrollo-Videojuegos/tree/main/UNITY/(VR)%20GOOGLE%20VR",
-      "readme": "https://github.com/NachoSLKN/Desarrollo-Videojuegos/blob/main/UNITY/(VR)%20GOOGLE%20VR/README.md",
-      "imageUrl": "https://raw.githubusercontent.com/NachoSLKN/Desarrollo-Videojuegos/main/UNITY/(VR)%20GOOGLE%20VR/Portada.png"
-    }
-  ]
+    "games":  [
+                  {
+                      "id":  "hitman",
+                      "title":  "Hitman: The Temple Sun",
+                      "engine":  "Unity",
+                      "folder":  "UNITY/Hitman",
+                      "status":  "En desarrollo",
+                      "description":  "Demo de sigilo en tercera persona inspirada en Hitman.",
+                      "tags":  [
+                                   "Unity",
+                                   "C#",
+                                   "Stealth"
+                               ],
+                      "github":  "https://github.com/NachoSLKN/Desarrollo-Videojuegos/tree/main/UNITY/Hitman",
+                      "readme":  "https://github.com/NachoSLKN/Desarrollo-Videojuegos/blob/main/UNITY/Hitman/README.MD",
+                      "imageUrl":  "https://raw.githubusercontent.com/NachoSLKN/Desarrollo-Videojuegos/main/UNITY/Hitman/Portada.png",
+                      "development":  "https://youtu.be/oCQWSZgxsfI",
+                      "gameplayLabel":  "VER DESARROLLO"
+                  },
+                  {
+                      "id":  "pydew",
+                      "title":  "PyDew Valley",
+                      "engine":  "Pygame",
+                      "folder":  "PYGAME/PyDew-Valley",
+                      "status":  "Demo publicada",
+                      "description":  "Juego de granja desarrollado con Python y Pygame, disponible para Windows y navegador.",
+                      "tags":  [
+                                   "Python",
+                                   "Pygame",
+                                   "Windows",
+                                   "Web"
+                               ],
+                      "github":  "https://github.com/NachoSLKN/Desarrollo-Videojuegos/tree/main/PYGAME/PyDew-Valley",
+                      "githubPc":  "https://github.com/NachoSLKN/Desarrollo-Videojuegos/tree/main/PYGAME/PyDew-Valley/PyDew-Valley-PC",
+                      "githubWeb":  "https://github.com/NachoSLKN/Desarrollo-Videojuegos/tree/main/PYGAME/PyDew-Valley/PyDew-Valley-WEB",
+                      "readme":  "https://github.com/NachoSLKN/Desarrollo-Videojuegos/blob/main/PYGAME/PyDew-Valley/PyDew-Valley-PC/README.md",
+                      "imageUrl":  "https://raw.githubusercontent.com/NachoSLKN/Desarrollo-Videojuegos/main/PYGAME/PyDew-Valley/PyDew-Valley-PC/Portada.png",
+                      "gameplay":  "https://youtu.be/X5yHedo7cYY",
+                      "gameplayLabel":  "VER GAMEPLAY",
+                      "itchUrl":  "https://nachoslkn.itch.io/pydew-valley",
+                      "playUrl":  "https://nachoslkn.itch.io/pydew-valley",
+                      "embedUrl":  "./games/pydew-valley/index.html",
+                      "downloadUrl":  "https://nachoslkn.itch.io/pydew-valley"
+                  },
+                  {
+                      "id":  "inspector-ags",
+                      "title":  "The Inspector",
+                      "engine":  "Adventure Game Studio",
+                      "folder":  "AGS/INSPECTORAGS",
+                      "status":  "Proyecto",
+                      "description":  "Aventura grÃ¡fica desarrollada con Adventure Game Studio.",
+                      "tags":  [
+                                   "AGS",
+                                   "Adventure",
+                                   "Point \u0026 Click"
+                               ],
+                      "github":  "https://github.com/NachoSLKN/Desarrollo-Videojuegos/tree/main/AGS/INSPECTORAGS",
+                      "readme":  "https://github.com/NachoSLKN/Desarrollo-Videojuegos/tree/main/AGS/INSPECTORAGS#readme"
+                  },
+                  {
+                      "id":  "godette",
+                      "title":  "The Leyend of Godette",
+                      "engine":  "Godot",
+                      "folder":  "GODOT/The Leyend Of Godette",
+                      "status":  "Proyecto",
+                      "description":  "Proyecto de videojuego desarrollado con Godot.",
+                      "tags":  [
+                                   "Godot",
+                                   "GDScript"
+                               ],
+                      "github":  "https://github.com/NachoSLKN/Desarrollo-Videojuegos/tree/main/GODOT/The%20Leyend%20Of%20Godette",
+                      "readme":  "https://github.com/NachoSLKN/Desarrollo-Videojuegos/blob/main/GODOT/The%20Leyend%20Of%20Godette/README.md",
+                      "imageUrl":  "https://raw.githubusercontent.com/NachoSLKN/Desarrollo-Videojuegos/main/GODOT/The%20Leyend%20Of%20Godette/Portada.png"
+                  },
+                  {
+                      "id":  "elden-ring",
+                      "title":  "Elden Ring Prototype",
+                      "engine":  "Unity",
+                      "folder":  "UNITY/Elden Ring",
+                      "status":  "Proyecto",
+                      "description":  "Prototipo de acciÃ³n y combate desarrollado con Unity.",
+                      "tags":  [
+                                   "Unity",
+                                   "C#",
+                                   "Action RPG"
+                               ],
+                      "github":  "https://github.com/NachoSLKN/Desarrollo-Videojuegos/tree/main/UNITY/Elden%20Ring",
+                      "readme":  "https://github.com/NachoSLKN/Desarrollo-Videojuegos/blob/main/UNITY/Elden%20Ring/README.md",
+                      "imageUrl":  "https://raw.githubusercontent.com/NachoSLKN/Desarrollo-Videojuegos/main/UNITY/Elden%20Ring/Portada.png"
+                  },
+                  {
+                      "id":  "quijote",
+                      "title":  "Don Quijote",
+                      "engine":  "Unity",
+                      "folder":  "UNITY/Don Quijote de la Mancha",
+                      "status":  "En desarrollo",
+                      "description":  "ARPG isomÃ©trico inspirado en Don Quijote, con combate y exploraciÃ³n estilo Diablo.",
+                      "tags":  [
+                                   "Unity",
+                                   "C#",
+                                   "ARPG",
+                                   "IsomÃ©trico"
+                               ],
+                      "github":  "https://github.com/NachoSLKN/Desarrollo-Videojuegos/tree/main/UNITY/Don%20Quijote%20de%20la%20Mancha",
+                      "readme":  "https://github.com/NachoSLKN/Desarrollo-Videojuegos/blob/main/UNITY/Don%20Quijote%20de%20la%20Mancha/README.md",
+                      "imageUrl":  "https://raw.githubusercontent.com/NachoSLKN/Desarrollo-Videojuegos/main/UNITY/Don%20Quijote%20de%20la%20Mancha/Portada.png",
+                      "development":  "https://youtube.com/live/R5Y4QydT8Pc?feature=share",
+                      "gameplayLabel":  "VER DESARROLLO"
+                  },
+                  {
+                      "id":  "iron-giant",
+                      "title":  "Gigante de Hierro",
+                      "engine":  "Unity",
+                      "folder":  "UNITY/IRON GIANT",
+                      "status":  "En desarrollo",
+                      "description":  "Demo 3D del Gigante de Hierro con locomociÃ³n, vuelo y sistemas interactivos.",
+                      "tags":  [
+                                   "Unity",
+                                   "C#",
+                                   "Blender",
+                                   "3D"
+                               ],
+                      "github":  "https://github.com/NachoSLKN/Desarrollo-Videojuegos/tree/main/UNITY/IRON GIANT",
+                      "readme":  "https://github.com/NachoSLKN/Desarrollo-Videojuegos/blob/main/UNITY/IRON GIANT/README.md",
+                      "imageUrl":  "https://raw.githubusercontent.com/NachoSLKN/Desarrollo-Videojuegos/main/UNITY/IRON GIANT/Portada.png",
+                      "development":  "https://youtu.be/KEFSmnB2Yjk",
+                      "gameplayLabel":  "VER DESARROLLO"
+                  },
+                  {
+                      "id":  "google-vr",
+                      "title":  "Google VR",
+                      "engine":  "Unity",
+                      "folder":  "UNITY/(VR) GOOGLE VR",
+                      "status":  "Finalizado",
+                      "description":  "Colección de experiencias de realidad virtual desarrolladas con Unity y Google VR, centradas en locomoción, interacción, entornos inmersivos y experiencias educativas.",
+                      "tags":  [
+                                   "Unity",
+                                   "C#",
+                                   "VR",
+                                   "Google VR",
+                                   "WebGL"
+                               ],
+                      "github":  "https://github.com/NachoSLKN/Desarrollo-Videojuegos/tree/main/UNITY/(VR)%20GOOGLE%20VR",
+                      "readme":  "https://github.com/NachoSLKN/Desarrollo-Videojuegos/blob/main/UNITY/(VR)%20GOOGLE%20VR/README.md",
+                      "imageUrl":  "https://raw.githubusercontent.com/NachoSLKN/Desarrollo-Videojuegos/main/UNITY/(VR)%20GOOGLE%20VR/Portada.png"
+                  },
+                  {
+                      "id":  "unity-card-battler",
+                      "title":  "UnityCardBattler: Spellbound",
+                      "engine":  "Unity",
+                      "folder":  "UNITY/UnityCardBattler",
+                      "status":  "Finalizado",
+                      "description":  "Card battler de construcción de mazos desarrollado con Unity y C#, con combate por turnos, gestión de cartas, deck building y enfrentamientos contra jefes.",
+                      "tags":  [
+                                   "Unity",
+                                   "C#",
+                                   "Card Game",
+                                   "Deck Building",
+                                   "WebGL"
+                               ],
+                      "github":  "https://github.com/NachoSLKN/Desarrollo-Videojuegos/tree/main/UNITY/UnityCardBattler",
+                      "readme":  "https://github.com/NachoSLKN/Desarrollo-Videojuegos/blob/main/UNITY/UnityCardBattler/README.md",
+                      "imageUrl":  "https://raw.githubusercontent.com/NachoSLKN/Desarrollo-Videojuegos/main/UNITY/UnityCardBattler/Portada.png"
+                  }
+              ]
 }
