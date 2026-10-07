@@ -1,6 +1,6 @@
 # Shader Graph Fundamentals
 
-![Shader Graph Fundamentals](img/1.png)
+![Shader Graph Fundamentals](img/1.JPG)
 
 Introductory project to **shaders and Unity Shader Graph**, created while learning the fundamentals of shader development through the **GameDev.tv** course *Unity Shader Graph: Create Procedural Shaders & Dynamic FX*.
 
@@ -23,13 +23,13 @@ Throughout the project I experimented with:
 
 ## Shader Examples
 
-![Shader Example](img/2.png)
+![Shader Example](img/2.JPG)
 
-![Shader Example](img/3.png)
+![Shader Example](img/3.JPG)
 
-![Shader Example](img/4.png)
+![Shader Example](img/4.JPG)
 
-![Shader Example](img/5.png)
+![Shader Example](img/5.JPG)
 
 ## About
 
