@@ -1,0 +1,88 @@
+[gd_scene format=3 uid="uid://xd14sj8qa6f3"]
+
+[ext_resource type="PackedScene" uid="uid://d16vk7h6ftxcy" path="res://scenes/entities/enemies/enemy.tscn" id="1_jk31c"]
+[ext_resource type="Script" uid="uid://c0gb47epx1a18" path="res://scenes/entities/enemies/skeleton_mage.gd" id="2_8053y"]
+[ext_resource type="PackedScene" uid="uid://c16qxxd7mhpfp" path="res://graphics/characters/skeleton mage/Skeleton_Mage.glb" id="2_a37h4"]
+[ext_resource type="PackedScene" uid="uid://02ix7c6cfe1u" path="res://graphics/weapons/wand.gltf" id="3_8053y"]
+[ext_resource type="Texture2D" uid="uid://cbf5176yt1e2d" path="res://graphics/weapons/barbarian_texture.png" id="4_k7qjj"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_04b2v"]
+albedo_texture = ExtResource("4_k7qjj")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bhunq"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_k7qjj"]
+animation = &"Spellcast_Shoot"
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_04b2v"]
+fadein_time = 0.2
+fadeout_time = 0.2
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_s6ily"]
+animation = &"Walking_C"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_77ekn"]
+animation = &"2H_Melee_Idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wx7v8"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_a0mr4"]
+xfade_time = 0.2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_c3w73"]
+xfade_time = 0.2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_6b86w"]
+states/Walk/node = SubResource("AnimationNodeAnimation_s6ily")
+states/Walk/position = Vector2(579, 121.33333)
+states/idle/node = SubResource("AnimationNodeAnimation_77ekn")
+states/idle/position = Vector2(390.33334, 106.66667)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_wx7v8"), "idle", "Walk", SubResource("AnimationNodeStateMachineTransition_a0mr4"), "Walk", "idle", SubResource("AnimationNodeStateMachineTransition_c3w73")]
+graph_offset = Vector2(40, -106)
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_s6ily"]
+graph_offset = Vector2(-342.79892, 126.314026)
+nodes/MoveStateMachine/node = SubResource("AnimationNodeStateMachine_6b86w")
+nodes/MoveStateMachine/position = Vector2(-280, 400)
+nodes/AttackAnimation/node = SubResource("AnimationNodeAnimation_k7qjj")
+nodes/AttackAnimation/position = Vector2(-213.33333, 640)
+nodes/AttackOneShot/node = SubResource("AnimationNodeOneShot_04b2v")
+nodes/AttackOneShot/position = Vector2(164.56001, 455.444)
+node_connections = [&"output", 0, &"AttackOneShot", &"AttackOneShot", 0, &"MoveStateMachine", &"AttackOneShot", 1, &"AttackAnimation"]
+
+[node name="SkeletonMage" unique_id=233252306 instance=ExtResource("1_jk31c")]
+script = ExtResource("2_8053y")
+
+[node name="skin" parent="." index="0" unique_id=1714697404 instance=ExtResource("2_a37h4")]
+
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="skin/Rig/Skeleton3D" parent_id_path=PackedInt32Array(1714697404, 1261324118) index="9" unique_id=556754785]
+transform = Transform3D(-0.999999, 4.6839318e-07, 4.573103e-07, 3.9779994e-07, -5.8875344e-07, 0.99999946, 3.9761645e-07, 0.99999946, 5.358822e-07, -0.8831323, 1.0492611, -7.275953e-07)
+bone_name = "handslot.r"
+bone_idx = 13
+
+[node name="wand2" parent="skin/Rig/Skeleton3D/BoneAttachment3D" index="0" unique_id=357969815 instance=ExtResource("3_8053y")]
+
+[node name="wand" parent="skin/Rig/Skeleton3D/BoneAttachment3D/wand2" index="0" unique_id=1743834518]
+surface_material_override/0 = SubResource("StandardMaterial3D_04b2v")
+
+[node name="CollisionShape3D" parent="." index="1" unique_id=974490748]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_bhunq")
+
+[node name="AnimationTree" parent="." index="2" unique_id=431243754]
+root_node = NodePath("../skin")
+tree_root = SubResource("AnimationNodeBlendTree_s6ily")
+anim_player = NodePath("../skin/AnimationPlayer")
+parameters/AttackOneShot/active = false
+parameters/AttackOneShot/internal_active = false
+parameters/AttackOneShot/request = 0
+
+[node name="AttackTimer" parent="Timers" parent_id_path=PackedInt32Array(1303328847) index="0" unique_id=2021180817]
+wait_time = 2.0
+autostart = true
+
+[connection signal="timeout" from="Timers/AttackTimer" to="." method="_on_attack_timer_timeout"]
+
+[editable path="skin"]
+[editable path="skin/Rig/Skeleton3D/BoneAttachment3D/wand2"]

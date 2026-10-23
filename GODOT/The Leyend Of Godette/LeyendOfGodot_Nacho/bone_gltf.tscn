@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://dedapi28h62b5"]
+
+[ext_resource type="PackedScene" uid="uid://cqxi7o0pyi1mt" path="res://graphics/weapons/bone.gltf.glb" id="1_r7ak3"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_635qg"]
+albedo_color = Color(0, 0.3882353, 1, 1)
+
+[node name="bone_gltf" unique_id=1746016831 instance=ExtResource("1_r7ak3")]
+
+[node name="bone" parent="." index="0" unique_id=5263867]
+surface_material_override/0 = SubResource("StandardMaterial3D_635qg")
