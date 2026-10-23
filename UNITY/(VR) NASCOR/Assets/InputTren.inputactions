@@ -1,0 +1,116 @@
+{
+    "version": 1,
+    "name": "InputTren",
+    "maps": [
+        {
+            "name": "Movimiento Tren",
+            "id": "790af762-5aeb-45fd-a21a-5101509b76b2",
+            "actions": [
+                {
+                    "name": "Adelante",
+                    "type": "Value",
+                    "id": "518b6d6b-8eba-4267-8271-7334027bfcec",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Atras",
+                    "type": "Value",
+                    "id": "938a76e5-f15c-414c-b23d-1fe21de36fb6",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "838f8acf-bbcb-419a-af7f-97b01494b6a5",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Adelante",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2680d84f-1861-48a7-87bb-79af11c189a5",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Adelante",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f9a28b43-c190-49d1-a603-d02b324003ea",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Atras",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4040ad88-8b89-4c06-9f14-a1e2017eeda4",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Atras",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "527ba021-8c98-472f-ae67-1073aa5ecd2a",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Atras",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Poderes",
+            "id": "f50f2879-c83c-4918-8072-2513d2e5f280",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "36d7988e-ac43-41b6-b79d-2c2bdbe78f49",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "e2446e6b-9618-4157-a34c-6c368b01f837",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
