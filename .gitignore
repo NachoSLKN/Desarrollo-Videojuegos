@@ -67,3 +67,4 @@ dist/
 # ========================
 *.zip
 savegame.json
+.plastic/

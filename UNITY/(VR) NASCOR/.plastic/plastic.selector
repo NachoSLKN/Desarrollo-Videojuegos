@@ -1,4 +1,0 @@
-repository "NASCOR_VR/NASCOR_VR@20066513101784@cloud"
-  path "/"
-    br "/main"
-    co "/main"
