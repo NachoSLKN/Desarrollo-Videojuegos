@@ -8,13 +8,19 @@
 
 ## Capturas del proyecto
 
-| Simulador — mandos | Simulador — manos animadas |
-|:---:|:---:|
-| ![Escena con controles simulados](img/01-simulador-mandos.jpg) | ![Escena con manos animadas](img/02-simulador-manos.jpg) |
+### Agarre directo con manos XR — pistola M1911
 
-| XR Origin y controladores | Escena dentro de Meta Quest Link |
+![Pistola M1911 agarrada con la mano izquierda en el XR Device Simulator](img/01-agarre-pistola-m1911.png)
+
+El prototipo permite **agarrar la pistola en primera persona** mediante las manos virtuales. El agarre se configura con los interactores de XR Interaction Toolkit y un punto de sujeción en el objeto.
+
+### Interacción y colocación de objetos
+
+| Interacción con la pistola | Zona de acople / socket |
 |:---:|:---:|
-| ![Jerarquía de la escena XR](img/03-jerarquia-xr.jpg) | ![Escena NASCOR renderizada para las Quest](img/10-meta-quest-link.jpg) |
+| ![Interacción con una pistola y previsualización de su posición](img/02-interaccion-pistola-xr.png) | ![Pistola en el área de detección de un socket XR](img/03-zona-acople-pistola.png) |
+
+Estas capturas muestran **interacciones directas, una visualización de objeto seleccionado y el área de detección del acople** en la escena ejecutada con XR Device Simulator. Se mantienen los modelos de manos azules y la mesa de pruebas con varios objetos.
 
 ## Estado actual — 31 de octubre de 2026
 
@@ -25,6 +31,8 @@
 | Movimiento continuo | ✅ | Probado con **WASD** en el simulador. |
 | Teletransporte | ✅ | Rayo XR, área válida y teleport ejecutándose en el simulador. |
 | Modelos de manos y mandos | ✅ | Se alternan visualmente con **V** en el simulador. |
+| Agarre directo de pistola M1911 | ✅ Simulador | Probado con las manos virtuales; se muestra en las nuevas capturas. |
+| Interacción y zona de acople de pistola | ✅ Visualización | Capturas de selección y del área de detección del socket en el simulador. |
 | Meta Quest / Quest Link | ✅ parcial | Se ha conectado el visor y se renderiza la escena desde el Editor. |
 | Oculus Touch Controller Profile | ✅ | Añadido a OpenXR para los controladores de Meta Quest. |
 | Seguimiento y aspecto de manos con Quest | 🔄 | Pendiente de validación final con ambos mandos físicos. |
@@ -72,15 +80,13 @@ SampleScene
 └── ... resto de objetos NASCOR
 ```
 
-![Prefab XR Origin en la escena](img/04-prefab-y-escena.jpg)
-
 Los modelos de manos son recursos animados importados del curso. Se colocaron como hijos de sus respectivos controladores y se ajustó su **Transform local** según el prefab original. Los objetos visuales de manos y mandos se activan de forma excluyente sin apagar los interactores.
 
 ## Configuración: simulador y gafas reales
 
-Se incorporó una utilidad de Editor (`Assets/Editor/NASCOR_VR_ModosEditor.cs`) para alternar sin reconfigurar manualmente cada proveedor XR. **La utilidad es específica del proyecto** y requiere tener los paquetes XR instalados.
+Se incorporó una utilidad de Editor (`Assets/Editor/NASCOR_VR_ModosEditor.cs`), cuyo menú se llama **`Gestor XR`**, para alternar sin reconfigurar manualmente cada proveedor XR. **La utilidad es específica del proyecto** y requiere tener los paquetes XR instalados.
 
-| Modo `NASCOR > VR` | Initialize XR on Startup | Proveedor / visor | Simulador en escena |
+| Modo `Gestor XR` | Initialize XR on Startup | Proveedor / visor | Simulador en escena |
 |---|---|---|---|
 | **1 - Simulador (teclado y ratón)** | OFF | No inicia OpenXR | ON |
 | **2 - Meta Quest Link** | ON | OpenXR en Windows | OFF |
@@ -92,23 +98,19 @@ Se incorporó una utilidad de Editor (`Assets/Editor/NASCOR_VR_ModosEditor.cs`) 
 
 1. Importar `XR Interaction Toolkit > Samples > Starter Assets` y el sample de simulador correspondiente.
 2. Tener un único XR Origin y un único XR Device Simulator en la escena.
-3. Fuera de Play, seleccionar **`NASCOR > VR > 1 - Simulador`**.
+3. Fuera de Play, seleccionar **`Gestor XR > 1 - Simulador (teclado y raton)`**.
 4. Guardar la escena, entrar en Play y utilizar el panel de controles que muestra el XR Device Simulator.
 5. Probar desplazamiento continuo, apuntado y teletransporte. Los bindings de simulación pueden cambiar según la versión del sample.
 
-![Ajustes del simulador XRI](img/06-configuracion-simulador.jpg)
-
 ### Probar con Meta Quest mediante Link (Windows)
 
-1. Fuera de Play, seleccionar **`NASCOR > VR > 2 - Meta Quest Link`**.
+1. Fuera de Play, seleccionar **`Gestor XR > 2 - Meta Quest Link (gafas reales)`**.
 2. Comprobar en `Project Settings > XR Plug-in Management > OpenXR` que está añadido **`Oculus Touch Controller Profile`** para la plataforma Windows.
 3. En la aplicación Meta Horizon Link, configurar el **runtime OpenXR activo** (en nuestro equipo ya aparecía como activo).
 4. Conectar las Quest por Quest Link y entrar en el entorno de PC VR desde el visor.
 5. Pulsar **Play** en Unity; la vista `Left Eye` del Game View muestra una de las dos imágenes estereoscópicas.
 
 No hace falta compilar una APK para esta prueba por Link. La prueba inicial confirmó la **visualización del escenario en las gafas**, no la finalización de todos los controles físicos.
-
-![Configuración del plugin OpenXR](img/05-configuracion-openxr.jpg)
 
 ## Movimiento y teletransporte con XR Interaction Toolkit
 
@@ -135,13 +137,7 @@ El objeto `Plane` utiliza un **Mesh Collider** y la **Layer física** `SueloTele
 
 Un raycast limitado al suelo puede atravesar visualmente objetos de otras capas: es apropiado como demostración, pero debe revisarse en un escenario con paredes y obstáculos.
 
-| Inspector del suelo | Inspector del rayo XR |
-|:---:|:---:|
-| ![Teleportation Area en el Plane](img/08-teleportation-area.jpg) | ![XR Ray Interactor de teletransporte](img/07-xr-ray-interactor.jpg) |
-
 En `XR Interactor Line Visual` se pueden configurar gradientes para **destino válido** (azul) e **inválido** (rojo). El rayo de teletransporte solo aparece cuando se activa la acción **Teleport Mode**; no debe confundirse con el rayo de interacción normal.
-
-![Componentes de locomoción XRI](img/09-locomotion-mediator.jpg)
 
 ### Controles que se comprobaron
 
@@ -156,7 +152,7 @@ El movimiento continuo y el teletransporte **conviven**; no se ha sustituido uno
 
 | Archivo | Propósito |
 |---|---|
-| `Assets/Editor/NASCOR_VR_ModosEditor.cs` | Menú `NASCOR > VR`: selecciona simulador, Quest Link y Mock HMD de pruebas. No ejecuta las gafas automáticamente. |
+| `Assets/Editor/NASCOR_VR_ModosEditor.cs` | Menú `Gestor XR`: selecciona simulador, Quest Link y Mock HMD de pruebas. No ejecuta las gafas automáticamente. |
 | `Assets/Scripts/AlternarManosMandosXR.cs` | Alterna la visibilidad de los modelos de manos y mandos, dejando interactores y entradas activos. |
 | `InicioVR.cs` / `PuntoInicioVR` | Experimento para alinear la cámara con un punto de inicio; **comportamiento con Quest pendiente de corregir**. |
 
@@ -164,7 +160,7 @@ No se incluyen en este repositorio los archivos generados de `Library/`, `Temp/`
 
 ## Prácticas recientes: agarre y mecanismos (30–31 de octubre de 2026)
 
-Durante las clases se han estudiado y realizado ejercicios guiados con la interacción física de **XR Interaction Toolkit**. Estas prácticas documentan el aprendizaje; no se afirma que todos los ejemplos estén finalizados o validados con las Meta Quest físicas.
+Durante las clases se han trabajado las interacciones físicas de **XR Interaction Toolkit**. **El agarre de la M1911 y las pruebas visuales de colocación/acople ya aparecen en la escena del simulador**, como muestran las capturas anteriores. Otras prácticas (escalado con dos manos, articulaciones y mandos físicos Quest) siguen sin quedar acreditadas por estas imágenes.
 
 | Componente o técnica | Uso y observaciones |
 |---|---|
@@ -181,11 +177,11 @@ Durante las clases se han estudiado y realizado ejercicios guiados con la intera
 ### Ejercicios de la sesión
 
 - **Cubo escalable:** agarrar con ambas manos, modificar su tamaño y conservar la escala al soltarlo; `Select Mode = Multiple` y un Grab Transformer configurado para el escalado bimanual.
-- **Pistola M1911:** crear un objeto hijo `PuntoAgarre`, situarlo sobre la empuñadura y referenciarlo desde `XR Grab Interactable > Attach Transform`.
-- **Soporte / socket:** combinar `XR Socket Interactor`, un Collider de detección y una representación visual semitransparente.
+- **Pistola M1911 (probada en simulador):** utilizar un punto de agarre situado sobre la empuñadura y referenciarlo desde `XR Grab Interactable > Attach Transform`. La captura principal muestra la pistola en la mano izquierda.
+- **Soporte / socket (pruebas visuales en simulador):** combinar `XR Socket Interactor`, un Collider de detección y una representación visual semitransparente. Las capturas muestran el área de acople y la interacción con la pistola.
 - **Deslizamiento limitado:** probar `Configurable Joint` bloqueando X e Y, limitando Z y bloqueando las rotaciones correspondientes.
 
-Se mantiene pendiente verificar cuáles de estas prácticas han quedado integradas y plenamente funcionales en la escena subida, además del control real con los mandos de Quest.
+Las capturas permiten comprobar **el agarre directo y la interacción visual con el área de acople** en el simulador. Queda pendiente una comprobación independiente de las demás prácticas y de su funcionamiento con los mandos físicos de Quest.
 
 📄 [Apuntes de clase: interacciones, agarre, sockets y articulaciones](docs/NASCOR_Clase_Interacciones_Sockets_Joints.pdf)
 
@@ -194,7 +190,7 @@ Se mantiene pendiente verificar cuáles de estas prácticas han quedado integrad
 1. **Corregir el punto de aparición en Quest Link**: el visor llega a renderizar el escenario, pero comienza con un desplazamiento distinto del esperado. El modo `Floor` se ha activado; queda pendiente alinear correctamente posición y orientación al iniciar la sesión real.
 2. **Verificar el seguimiento y la apariencia de ambos mandos físicos** con `Oculus Touch Controller Profile` ya añadido. En pruebas previas las manos no aparecían; falta comprobarlo tras el ajuste.
 3. **Revisar los avisos residuales de Console**, incluidos mensajes de ejercicios anteriores no relacionados con XR.
-4. **Afinar materiales/animación de las manos**, límites de teletransporte y obstáculos; validar los ejercicios de agarre directo, sockets, escalado y Joints.
+4. **Afinar materiales/animación de las manos**, límites de teletransporte y obstáculos; profundizar en los sockets y validar escalado bimanual y Joints.
 5. **Reutilizar el flujo de VR en DeadEarth y en otro proyecto VR**, preservando sus escenas y recursos existentes.
 6. **Valorar una build Android independiente** para Quest más adelante; la prueba actual se realiza desde Windows a través de Quest Link.
 
