@@ -157,8 +157,8 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.pipeline": {
-      "version": "0.8.0-exp.1",
-      "depth": 0,
+      "version": "0.9.1-exp.1",
+      "depth": 1,
       "source": "registry",
       "dependencies": {
         "com.unity.test-framework": "1.1.33",
@@ -258,6 +258,19 @@
         "com.unity.modules.ui": "1.0.0",
         "com.unity.modules.imgui": "1.0.0"
       }
+    },
+    "com.unity.ui.figma": {
+      "version": "0.3.0-exp.1",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.pipeline": "0.9.1-exp.1",
+        "com.unity.modules.uielements": "1.0.0",
+        "com.unity.modules.jsonserialize": "1.0.0",
+        "com.unity.nuget.newtonsoft-json": "3.0.2",
+        "com.unity.modules.imageconversion": "1.0.0"
+      },
+      "url": "https://packages.unity.com"
     },
     "com.unity.visualscripting": {
       "version": "1.9.10",

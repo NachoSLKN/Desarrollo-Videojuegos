@@ -1,0 +1,36 @@
+# Comparativa de 5 movimientos en Unity 6 (NASCOR)
+
+Copia los seis archivos `.cs` en `Assets/Scripts/ComparativaMovimientos/` dentro del proyecto Unity.
+No reemplaces ninguno de los scripts de clase.
+
+Tu jerarquia YA EXISTENTE debe ser:
+
+METODOS_MOVIMIENTO (GameObject padre)
+  01_Translate
+  02_Position
+  03_AddForce
+  04_MovePosition
+  05_CharacterController
+
+## Componentes
+
+* METODOS_MOVIMIENTO: InputComparativaMovimiento + Player Input (Actions: InputSystem_Actions, Default Map: Player, Behavior: Send Messages). No requiere Collider.
+* 01_Translate: Capsule Collider + MovimientoTranslateDemo. SIN Rigidbody.
+* 02_Position: Capsule Collider + MovimientoPositionDemo. SIN Rigidbody.
+* 03_AddForce: Capsule Collider + Rigidbody dinamico + MovimientoAddForceDemo. Is Kinematic OFF; Use Gravity ON; Mass 1; Linear Damping aprox. 3-5; Freeze Rotation X y Z.
+* 04_MovePosition: Capsule Collider + Rigidbody cinematico + MovimientoMovePositionDemo. Is Kinematic ON; Use Gravity OFF; Interpolate = Interpolate.
+* 05_CharacterController: Character Controller + MovimientoCharacterControllerDemo; sin Rigidbody ni Capsule Collider adicional.
+
+La accion Player/Move debe ser Value / Vector2 y tener bindings WASD y Left Stick. La configuracion del proyecto ya dispone de esta accion.
+
+## Importante
+
+- No es necesario arrastrar referencias: los cinco scripts buscan automaticamente el InputComparativaMovimiento en su padre.
+- Los cinco objetos deben ser HIJOS de METODOS_MOVIMIENTO, sin padres intermedios que impidan la busqueda (GetComponentInParent soporta padres intermedios).
+- Desactiva Player Inputs antiguos (por ejemplo, en el viejo Capsule Character Controller) durante esta prueba para evitar competir por el teclado.
+- Suelo Plane a Y=0, capsulas a Y=1 y X separados, y Camara enfocandolas.
+- 01 y 02 pueden atravesar paredes al mover directamente Transform; 03 usa fuerzas; 04 se mueve cinematicamente; 05 resuelve colisiones con CharacterController.
+- Si Unity muestra errores de compilacion en rojo, deben resolverse antes de que se ejecute cualquier script.
+- Pulsa Play y prueba W/A/S/D: las cinco reciben el mismo Vector2 y se desplazan simultaneamente, cada una con su tecnica.
+
+Estos scripts no modifican archivos de Unity a distancia. No incluyen ningun commit/push a GitHub.
