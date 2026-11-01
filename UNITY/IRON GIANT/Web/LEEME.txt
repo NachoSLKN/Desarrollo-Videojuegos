@@ -1,0 +1,8 @@
+Actualizacion tipografica de Iron Giant Web
+
+Copiar src/index.css dentro de la carpeta Web del proyecto React, sustituyendo el archivo existente.
+Requiere que public/fonts/iron-giant-project-v1.woff2 ya sea la version v2 de la tipografia.
+Vite debe actualizar automaticamente o con Ctrl+F5.
+
+La tipografia se aplica a titulos, navegacion, indice, botones y etiquetas cortas del GDD. Los parrafos conservan una fuente legible.
+Para Unity, usa el TTF que ya tienes localmente en Web/public/fonts/iron-giant-project-v1.ttf.
