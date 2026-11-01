@@ -2,5 +2,5 @@
 import { defineConfig } from 'vite'
 export default defineConfig({
   plugins: [react()],
-  base: '/Desarrollo-Videojuegos/',
+  base: '/Desarrollo-Videojuegos/UNITY/IRON%20GIANT/',
 })

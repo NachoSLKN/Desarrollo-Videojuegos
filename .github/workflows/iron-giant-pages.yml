@@ -23,15 +23,19 @@ jobs:
           node-version: '24'
           cache: npm
           cache-dependency-path: 'UNITY/IRON GIANT/Web/package-lock.json'
-      - name: Build website
+      - name: Build GDD
         working-directory: 'UNITY/IRON GIANT/Web'
         run: |
           npm ci
           npm run build
+      - name: Prepare Pages directory
+        run: |
+          mkdir -p "publish/UNITY/IRON GIANT"
+          cp -a "UNITY/IRON GIANT/Web/dist/." "publish/UNITY/IRON GIANT/"
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: 'UNITY/IRON GIANT/Web/dist'
+          path: publish
   deploy:
     environment:
       name: github-pages
