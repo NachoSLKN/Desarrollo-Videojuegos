@@ -1,80 +1,212 @@
-export type Section = {id:string; title:string; status?:'Definido'|'Prototipo'|'En estudio'|'Pendiente'; paragraphs?:string[]; bullets?:string[]; note?:string; table?:{columns:string[]; rows:string[][]}};
-export type Chapter = {id:string; title:string; sections:Section[]};
+export type Section = {
+  id:string
+  title:string
+  status?:'Definido'|'Prototipo'|'En estudio'|'Pendiente'
+  paragraphs?:string[]
+  bullets?:string[]
+  note?:string
+  table?:{columns:string[]; rows:string[][]}
+}
+
+export type Chapter = {id:string; title:string; sections:Section[]}
+
 export const chapters:Chapter[] = [
  {id:'introduccion',title:'01 · Introducción',sections:[
-  {id:'sobre',title:'Sobre este documento',status:'Definido',paragraphs:['Documento de diseño del juego (GDD) y documento de referencia del desarrollo visual de The Iron Giant, un prototipo académico no oficial. Se organiza como documentación viva: explica decisiones, distingue resultados de hipótesis y sirve para colaborar y evaluar el progreso.','Este sitio toma como referencia el nivel de detalle y la organización temática de Grid Studio, con contenidos, redacción y recursos propios. Las secciones pendientes se conservan para poder ampliar el documento a lo largo del desarrollo.'],bullets:['Versión documental: 0.2 · noviembre de 2026.','Motor del prototipo: Unity 6.3 LTS · lenguaje C#.','Web: React + Vite + TypeScript.','Alcance de la primera entrega artística: personaje, escenario, imagen de marketing e interfaz.']},
-  {id:'origen',title:'Origen del proyecto y reinterpretación',status:'Definido',paragraphs:['La propuesta combina la evolución de un trabajo artístico previo y la reinterpretación interactiva de una obra audiovisual preexistente. El modelo tridimensional del Gigante fue creado en una asignatura de Diseño 3D, con modelado, ajuste de malla, UV y texturizado; ahora se reutiliza para experimentar con animación, materiales, escenarios y sistemas de juego.','No se trata de un remake de un videojuego existente, sino de un prototipo nuevo basado en el universo de la película. El uso de esta propiedad intelectual se identifica como no oficial y académico. Los materiales ajenos, incluido el personaje generado con Meshy, se atribuirán por separado.'],bullets:['Línea 1 — revisión y mejora de trabajo artístico anterior.','Línea 2 — reinterpretación visual de una propiedad intelectual existente.','Línea 3 — incorporación de escenarios, interfaces y mecánicas de interacción propias.']},
-  {id:'pitch',title:'Concepto y pitch',status:'Definido',paragraphs:['Aventura 3D en tercera persona en la que el jugador alterna entre Hogarth y el Gigante de Hierro. La diferencia de escala transforma el modo de explorar un mismo lugar: el Gigante puede superar grandes obstáculos y Hogarth alcanzar huecos y zonas pequeñas.','El bucle principal propuesto combina exploración, recolección de tornillos y presión temporal. Tras completar la recolección, la amenaza militar desaparece y se abre una fase final sin cuenta atrás frente a un dragón. Esta segunda fase todavía no está implementada.'],note:'Pilar de diseño: dos personajes, dos escalas y un mismo mundo.'},
-  {id:'publico',title:'Público objetivo',status:'En estudio',paragraphs:['Jugadores interesados en aventuras de exploración accesibles, mundos estilizados y mecánicas cooperativas entre personajes (sin multijugador en el alcance inicial). Se priorizan sesiones cortas, claridad visual y controles comprensibles.'],bullets:['Plataforma de prototipado: PC/Windows.','Mando: objetivo de compatibilidad, pendiente de validación.','Edad objetivo y requisitos de accesibilidad: por concretar con pruebas de usuario.']},
-  {id:'objetivos',title:'Objetivos del producto · MVP / MMP / MAP',status:'En estudio',table:{columns:['Hito','Resultado esperado','Estado'],rows:[['MVP','Control estable del Gigante y Hogarth, cambio de personaje, recolección de tornillos, contador y finalización de nivel.','Parcial / pendiente'],['MMP','Escenario completo, interfaz final, sonido, mejoras básicas, soldados y opciones de accesibilidad.','Propuesto'],['MAP','Escalada del Gigante, tren/QTE, reconstrucción por piezas, jefe dragón, múltiples zonas y acabado visual avanzado.','Visión a largo plazo']]},note:'Las siglas describen niveles de madurez del producto, no compromisos para la entrega del 5 de noviembre.'}
+  {id:'sobre',title:'Sobre este documento',paragraphs:[
+   'Este documento funciona simultáneamente como GDD y memoria de desarrollo.',
+   'Las secciones aún no desarrolladas se mantienen para poder ampliar el documento durante el proyecto.'
+  ]},
+  {id:'origen',title:'Origen del proyecto y reinterpretación',paragraphs:[
+   'El modelo fue realizado por el autor del proyecto.',
+   'El proyecto actual reutiliza este material para crear una nueva propuesta visual y jugable en Unity.'
+  ]},
+  {id:'pitch',title:'Concepto y pitch',paragraphs:['Juego 3D en tercera persona.']},
+  {id:'publico',title:'Público objetivo',paragraphs:['Por definir.']},
+  {id:'objetivos',title:'Objetivo del producto',paragraphs:['Crear una demo jugable y visualmente coherente.']}
  ]},
+
  {id:'produccion',title:'02 · Producción y técnica',sections:[
-  {id:'tecnica',title:'Especificaciones técnicas',status:'Prototipo',bullets:['Unity 6.3 LTS (6000.3.10f1) y C#.','Input System para las acciones del jugador.','Blender para modelado 3D, Grease Pencil y pruebas 2D/3D.','Krita para imágenes, tratamiento de texturas, portada e interfaz.','TextMeshPro para tipografía y textos UI.','Git/GitHub para control de versiones.','Web React + TypeScript + Vite; contenido estructurado independiente de Unity.'],note:'Se debe confirmar en el proyecto qué Render Pipeline y paquetes están activos antes de definir shaders.'},
-  {id:'arquitectura',title:'Arquitectura del proyecto',status:'En estudio',paragraphs:['Se prioriza una estructura modular. Los componentes del personaje deben separar desplazamiento, habilidades, percepción de objetivos e interfaz, evitando entradas de control que permanezcan activas cuando el personaje deja de estar seleccionado.','Se contempla aplicar patrones de Ingeniería de Videojuegos cuando resuelvan problemas reales: State, Observer, Component, Command, Object Pool, Flyweight y otros del temario.'],bullets:['State — locomoción terrestre / vuelo y estados incompatibles.','Observer — cambios de salud, selección de personaje, recogida de tornillos.','Component — movimiento, vuelo, ataque, interacción y salud desacoplados.','Command — representar acciones y facilitar remapeo / pruebas.','Object Pool — reutilizar impactos, proyectiles y partículas.']},
-  {id:'plan',title:'Planificación del desarrollo',status:'Definido',table:{columns:['Etapa','Alcance','Entregable'],rows:[['1–5 nov. 2026','Arte Final y presentación','Ficha personaje, escenario, marketing e interfaz'],['Después de entrega','Greyboxing y controladores','Cambio de personaje robusto y movilidad pulida'],['MVP','Tornillos, temporizador y objetivo','Primer nivel jugable'],['Expansión','IA, mejoras, animaciones y escenarios','Demo de mayor alcance']]},note:'La fecha de entrega artística no supone una fecha de finalización del videojuego.'},
-  {id:'pipeline',title:'Pipeline y control de versiones',status:'Definido',paragraphs:['Fuentes editables (.blend, .kra) separadas de exportaciones de uso en tiempo real (.fbx, .png). Las imágenes y documentos de la web viven en una carpeta hermana del proyecto Unity dentro del mismo repositorio.'],bullets:['Commits por funcionalidad o conjunto artístico terminado.','Documentar autoría, origen y licencias de recursos externos.','Antes de reorganizar Assets: hacer commit/copia de seguridad y mover elementos desde Unity para conservar referencias .meta.','Evitar subir node_modules, Library, Temp y otras carpetas generadas.']},
-  {id:'equipo',title:'Equipo y responsabilidades',status:'Pendiente',paragraphs:['Trabajo académico de dos integrantes en esta fase. Los nombres y tareas finales se incorporarán cuando el reparto esté confirmado. Se registrará quién modela, ilustra, programa e integra cada elemento para acreditar correctamente el proceso.']}
+  {id:'tecnica',title:'Especificaciones técnicas',bullets:[
+   'Unity 6.3 LTS.',
+   'C#.',
+   'Universal Render Pipeline (URP).',
+   'Blender.',
+   'Krita.',
+   'Git y GitHub.',
+   'React, TypeScript y Vite para la web.'
+  ]},
+  {id:'arquitectura',title:'Arquitectura del proyecto',paragraphs:[
+   'El código se seguirá reorganizando para mantener los sistemas escalables y aplicar estados y patrones de diseño cuando sean necesarios.'
+  ]},
+  {id:'plan',title:'Planificación del desarrollo',paragraphs:[
+   'La fase actual está centrada en la dirección artística y en documentar el trabajo realizado. El resto del proyecto se ampliará en siguientes fases.'
+  ]},
+  {id:'pipeline',title:'Pipeline y control de versiones',paragraphs:[
+   'Blender y Krita se utilizan para crear y editar recursos; Unity para integrarlos y probarlos; GitHub para control de versiones y documentación.'
+  ]},
+  {id:'equipo',title:'Equipo y responsabilidades',paragraphs:['Por definir.']}
  ]},
+
  {id:'arte',title:'03 · Dirección artística',sections:[
-  {id:'vision',title:'Estilo visual y referencias',status:'En estudio',paragraphs:['La propuesta busca una estética cohesionada de geometría relativamente sencilla, materiales estilizados, dibujo ilustrado y composición de cómic. La referencia narrativa es la película, pero los escenarios y materiales se reinterpretan con decisiones visuales propias.','No se intenta imponer un acabado plano a cada superficie: la paleta actúa como conjunto de anclajes para la dirección del color, la interfaz y las piezas de marketing.'],bullets:['3D low-poly / greybox para estructura y lectura espacial.','Grease Pencil para algunos fondos, árboles o trazos exportables a Unity.','Krita para texturas pintadas, variación de madera y metal, y gráficos de interfaz.','Ilustración de cómic clásico, contornos y halftone para las piezas promocionales.']},
-  {id:'paleta',title:'Paleta cromática',status:'Definido',paragraphs:['Los colores base del proyecto son negros y grises, con naranja pastel como acento principal. Rojo pastel y azul desaturado funcionan como colores de apoyo para salud, señales y energía.'],table:{columns:['Uso','Color','Hex'],rows:[['Carbón','Negro principal','#1E1E1E'],['Superficies','Gris oscuro','#2F3236'],['Interfaz','Gris medio','#4A4E54'],['Metal','Acero','#70767D'],['Texto principal','Blanco roto','#F2F2F0'],['Texto secundario','Gris claro','#C9CDD1'],['Acento','Naranja pastel','#E79A62'],['Luz','Naranja claro','#F2B47C'],['Salud/peligro','Rojo pastel','#D66A6A'],['Energía','Azul desaturado','#7FA9C7']]},note:'En PBR el albedo no debe incluir sombras pintadas que sustituyan a la iluminación: rugosidad, normales y metalicidad se ajustarán por separado.'},
-  {id:'materiales',title:'Materiales, texturas y sombreado',status:'En estudio',paragraphs:['Primera práctica prevista: un material de madera o metal sencillo en Krita. Partiremos de un color base, variación controlada, textura suave y pequeños detalles; exportaremos PNG e integraremos el resultado en un objeto de la escena.','Se estudiará un sombreado estilizado en Unity. Toon shading y contornos por shader no son Grease Pencil real; pueden combinarse con imágenes o geometría que sí procedan de Grease Pencil.'],bullets:['Prueba 1: textura de madera pintada en Krita.','Prueba 2: siluetas de árboles dibujadas con Grease Pencil y exportadas con transparencia.','Prueba 3: contorno suave en un objeto 3D sin alterar el modelo del Gigante.']},
-  {id:'tipografia',title:'Tipografía y rotulación',status:'Prototipo',paragraphs:['Se ha elaborado una fuente display experimental a partir de lettering observado en varias portadas de The Iron Giant y reconstrucción de caracteres no visibles. Se utiliza en títulos de la web y se ha importado a Unity mediante un Font Asset de TextMeshPro.','Por legibilidad, la lectura continua del GDD emplea una tipografía convencional. La fuente display es un estudio tipográfico derivado y no se presenta como fuente oficial.']},
-  {id:'animacion',title:'Animación y movimiento',status:'En estudio',paragraphs:['El Gigante y Hogarth disponen de prototipos de movimiento. Se contempla documentar un turnaround del Gigante y ejemplos de idle, desplazamiento y vuelo; las animaciones externas de Mixamo se acreditarán cuando se usen.'],note:'Un turnaround 3D no equivale automáticamente a una rotoscopia. La rotoscopia es una técnica de dibujo sobre referencia fotograma a fotograma.'},
-  {id:'vfx',title:'Efectos visuales',status:'Prototipo',paragraphs:['Los rayos oculares y las partículas de vuelo ya tienen prototipos. Se detectó un error de partículas visualizadas como cuadrados negros; queda pendiente revisar materiales, shaders y texturas.'],bullets:['Rayos: lectura de dirección, origen y punto de impacto.','Vuelo: estelas / partículas con gradiente desaturado.','Impactos: reutilización futura con Object Pool.']}
+  {id:'vision',title:'Estilo visual y referencias',paragraphs:[
+   'La dirección visual combina 3D, cel shading, contornos y recursos gráficos inspirados en el cómic y el pop-art.'
+  ]},
+  {id:'paleta',title:'Paleta cromática'},
+  {id:'materiales',title:'Materiales, texturas y sombreado',paragraphs:[
+   'El sombreado actual utiliza Flat Kit: Toon Shading and Water.',
+   'Se ha aplicado cel shading y contorno al Gigante y a elementos de prueba de la escena.'
+  ]},
+  {id:'tipografia',title:'Tipografía y rotulación',paragraphs:[
+   'Se ha creado una fuente propia basada en la tipografía original de la película para utilizarla en el proyecto.',
+   'La fuente ya se utiliza en los títulos de esta web y se seguirá aplicando a los elementos gráficos donde mantenga una buena legibilidad.'
+  ]},
+  {id:'animacion',title:'Animación y movimiento',paragraphs:[
+   'El Gigante dispone de movimiento y vuelo. Las animaciones todavía necesitan trabajo y se seguirán ajustando.'
+  ]},
+  {id:'vfx',title:'Efectos visuales',paragraphs:[
+   'Se han probado rayos oculares y feedback gráfico de cómic dentro del gameplay.',
+   'Al destruir un bloque puede aparecer brevemente un gráfico CRASH! con desvanecimiento. Se plantean variantes como BOOM! y efectos de impulso para el vuelo.'
+  ]}
  ]},
+
  {id:'personajes',title:'04 · Personajes',sections:[
-  {id:'gigante',title:'El Gigante de Hierro',status:'Prototipo',paragraphs:['Modelo 3D realizado por el autor del proyecto en una asignatura anterior. El flujo incluyó modelado, bevel, suavizado, corrección de mallas, UV y preparación de texturas, además de pruebas con Substance Painter.','En Unity se han implementado movimiento, carrera, vuelo, rayos oculares y fijación de objetivo. Se pretende renovar materiales, pulir animación y reforzar la sensación de tamaño y masa.'],bullets:['Ficha visual: vistas frontal, lateral, posterior y tres cuartos.','Turnaround de 360° y silueta.','Movimiento: locomoción, vuelo, mirada y acciones.','Pendiente: controlador estable y mejor respuesta de efectos/animaciones.']},
-  {id:'hogarth',title:'Hogarth',status:'Prototipo',paragraphs:['Personaje secundario jugable. El modelo fue generado mediante Meshy y posteriormente integrado en Unity; se especificará con claridad qué partes son generadas y cuáles son trabajo propio de adaptación.','Hogarth podrá explorar espacios inaccesibles al Gigante. Se plantea que pueda escalar sobre él para alcanzar objetos o zonas elevadas.'],bullets:['Cámara y control propios implementados en el prototipo.','Cambio de personaje mediante Tab: pendiente de estabilizar.','Escalada sobre el Gigante: idea futura de alta complejidad.']},
-  {id:'dean',title:'Dean y NPC',status:'En estudio',paragraphs:['La chatarrería de Dean se plantea como lugar de descanso y compra de mejoras. Dean podría tener pequeñas rutinas de atención y trabajo, pero no se ha diseñado todavía una IA definitiva.']},
-  {id:'enemigos',title:'Soldados, fauna y dragón',status:'En estudio',paragraphs:['Los soldados presionan durante la fase cronometrada; la fauna aporta reactividad al bosque; un dragón se contempla como jefe de final de zona. Estos elementos se mantienen como propuestas, no como contenido terminado.'],bullets:['Ciervos: Idle → Wander → Alert → Flee como ejemplo de FSM.','Militares: patrulla → detección → persecución/ataque.','Dragón: fase sin límite de tiempo, tras completar los tornillos.']}
+  {id:'gigante',title:'El Gigante de Hierro',paragraphs:[
+   'Modelo 3D propio reutilizado para este proyecto.',
+   'El personaje se documenta mediante vistas frontal, lateral, tres cuartos frontal, tres cuartos trasero y trasera.'
+  ]},
+  {id:'hogarth',title:'Hogarth',paragraphs:[
+   'Hogarth está integrado en Unity y se utiliza también para comprobar la diferencia de escala respecto al Gigante.'
+  ]},
+  {id:'dean',title:'Dean y NPC',paragraphs:['Por hacer.']},
+  {id:'enemigos',title:'Soldados, fauna y dragón',paragraphs:['Por hacer.']}
  ]},
+
  {id:'escenarios',title:'05 · Escenarios',sections:[
-  {id:'escenarios-general',title:'Mapa y estructura del mundo',status:'En estudio',paragraphs:['El entorno previsto combina bosque, ciudad y un pequeño taller/chatarrería. La diferencia de escala entre protagonistas debería permitir que un mismo escenario se lea de dos maneras.'],bullets:['Bosque: introducción narrativa y encuentro inicial.','Ciudad low-poly: exploración con diferentes alturas.','Chatarrería: escenario pequeño con mejoras y NPC.']},
-  {id:'chatarreria',title:'Chatarrería de Dean',status:'En estudio',paragraphs:['Escenario reducido, casi simbólico, para mostrar una zona de taller y el sistema de mejoras. Se estudia un híbrido 3D/2D: objetos interactivos en Unity sobre un fondo ilustrado con Grease Pencil.','Para la entrega artística se prioriza una composición clara con un personaje integrado, perspectiva, paleta e iluminación frente a un mapa grande sin acabado.']},
-  {id:'bosque',title:'Bosque y secuencia de introducción',status:'En estudio',paragraphs:['La escena de introducción propuesta presenta a Hogarth recorriendo el bosque y encontrando al Gigante. El tráiler basado en esta situación se pospone hasta contar con movimiento, cámaras y animaciones más sólidos.']},
-  {id:'ciudad',title:'Ciudad low-poly',status:'En estudio',paragraphs:['Área urbana con edificios simplificados y objetos coleccionables accesibles desde escalas distintas. La destrucción modular y el tren son sistemas de expansión, no requisitos del MVP.']},
-  {id:'niveles',title:'Progresión de niveles',status:'Pendiente',table:{columns:['Secuencia','Propósito','Estado'],rows:[['Prototipo 0','Prueba de control y cambio de personaje','Parcial'],['Zona 1','Explorar, recoger tornillos y conocer diferencias de escala','Previsto'],['Zona 1 · final','Encuentro de jefe sin temporizador','Conceptual'],['Otras zonas','Nuevas habilidades y entornos','No diseñado']]}},
-  {id:'sintesis-escena',title:'Composición y documentación del escenario',status:'En estudio',bullets:['Thumbnail inicial y alternativas de composición.','Paleta y tratamiento de luz.','Imagen del escenario sin personaje y con personaje integrado.','Vista que demuestre profundidad y escala.','Capturas del proceso Blender / Unity / Krita.']}
+  {id:'escenarios-general',title:'Escenario',paragraphs:[
+   'Se ha realizado una primera propuesta de escenario para situar al Gigante en la chatarrería de Dean.'
+  ]},
+  {id:'chatarreria',title:'Chatarrería de Dean',paragraphs:['Por hacer.']},
+  {id:'bosque',title:'Bosque y secuencia de introducción',paragraphs:['Por hacer.']},
+  {id:'ciudad',title:'Ciudad low-poly',paragraphs:[
+   'Existe una escena urbana de prueba utilizada para integrar personajes, edificios, cel shading y destrucción de bloques.'
+  ]},
+  {id:'niveles',title:'Progresión de niveles',paragraphs:['Por definir.']},
+  {id:'sintesis-escena',title:'Composición y documentación del escenario',paragraphs:[
+   'Se seguirán incorporando capturas de las escenas conforme avance el trabajo artístico.'
+  ]}
  ]},
+
  {id:'interfaz',title:'06 · Interfaz y navegación',sections:[
-  {id:'hud',title:'HUD de juego',status:'Prototipo',paragraphs:['El prototipo ya incluye retratos del Gigante y Hogarth, barras de salud, contador de recurso y lock-on. El indicador de objetivo funciona sobre el blanco seleccionado. Se revisará la coherencia entre la tipografía display, la legibilidad de los números y la paleta.'],bullets:['Portrait + Health: identificación del personaje activo.','Scrap/Screws: contador de tornillos.','Lock-On: indicación contextual sobre el objetivo.','Controls: panel temporal para pruebas, no un requisito de la UI final.']},
-  {id:'menus',title:'Title Screen, menú principal y carga',status:'Prototipo',paragraphs:['Se ha creado una pantalla previa al menú con “Press Any Button” y animación de latido. El menú principal incluye Jugar, Opciones, Créditos y Salir.','Se está preparando una escena de carga reutilizable con una portada de cómic aleatoria y barra de progreso, separada del fondo y de la UI.']},
-  {id:'navegacion',title:'Diagrama de navegación',status:'En estudio',paragraphs:['Ruta principal prevista: Title Screen → Menú principal → Loading Screen → Partida. Desde el menú se accede a opciones y créditos, y desde la partida se prevé una pausa con retorno al menú.'],bullets:['La pantalla de carga recibe una escena de destino.','La pausa y los ajustes se documentarán cuando existan.','Los controles deben funcionar con Input System sin duplicar eventos entre personajes.']},
-  {id:'accesibilidad',title:'Accesibilidad y localización',status:'Pendiente',paragraphs:['Se estudiarán escalas de texto, contraste, remapeo de controles y configuración de audio. La fuente display se reservará para titulares, nunca para párrafos largos. Los idiomas del prototipo aún no se han cerrado.']}
+  {id:'hud',title:'HUD de juego',paragraphs:[
+   'Existe un HUD integrado en Unity con información de personaje, salud, recursos, lock-on y controles de prueba.'
+  ]},
+  {id:'menus',title:'Title Screen, menú principal y carga',paragraphs:[
+   'Existen pruebas de pantalla de título, menú y carga. Los cómics del proyecto se utilizarán también como recurso visual en las pantallas de carga.'
+  ]},
+  {id:'navegacion',title:'Diagrama de navegación',paragraphs:[
+   'Title Screen → Menú → Carga → Partida.'
+  ]},
+  {id:'accesibilidad',title:'Accesibilidad y localización',paragraphs:['Por definir.']}
  ]},
+
  {id:'mecanicas',title:'07 · Mecánicas de juego',sections:[
-  {id:'papel',title:'Papel del jugador',status:'Definido',paragraphs:['El jugador controla alternativamente a dos protagonistas con habilidades y escalas distintas. Su tarea principal propuesta es explorar y conseguir todos los tornillos del escenario mientras gestiona una amenaza temporal.']},
-  {id:'controles',title:'Controles',status:'Prototipo',table:{columns:['Entrada','Acción','Observación'],rows:[['WASD','Mover','Ambos protagonistas'],['Shift','Correr','En pruebas'],['Tab','Cambiar personaje','Presentó fallos de activación'],['Q','Fijar objetivo','Lock-On operativo'],['E','Empujar/interactuar','Sujeto a revisión'],['F','Volar','Gigante'],['Botón derecho','Rayos oculares','Gigante; corregir input al cambiar']]}},
-  {id:'bucle',title:'Ciclo de juego',status:'En estudio',paragraphs:['Inicio de zona → comienza el temporizador → explorar con ambos protagonistas → conseguir tornillos → finalizar la recolección → termina la amenaza cronometrada → enfrentamiento final.','El bucle es una propuesta de diseño. Aún debemos decidir cuánto tiempo dura la cuenta atrás, qué pasa al agotarse y cómo equilibrar el número de tornillos.']},
-  {id:'tornillos',title:'Tornillos y recursos',status:'En estudio',paragraphs:['Los tornillos son el coleccionable principal y pueden funcionar también como moneda de mejora. Parte de ellos requeriría el tamaño reducido de Hogarth y otros las habilidades del Gigante.'],bullets:['Definir total por nivel y condición de recogida.','Actualizar HUD mediante eventos / Observer.','Diseñar zonas exclusivas por personaje.','Separar progreso de nivel de gasto en tienda si ambos comparten el recurso.']},
-  {id:'mejoras',title:'Sistema de mejoras',status:'Pendiente',paragraphs:['La chatarrería permitiría comprar mejoras del Gigante usando tornillos. Las mejoras concretas, costes y persistencia no están decididos. Primero se diseñará una transacción de prueba con feedback visual.']},
-  {id:'escalada',title:'Escalada sobre el Gigante',status:'En estudio',paragraphs:['Se pretende que Hogarth escale el cuerpo del Gigante y alcance áreas altas; la referencia mecánica es Shadow of the Colossus. Es una característica compleja, subordinada a la estabilidad de ambos controladores.']},
-  {id:'tren',title:'Tren y Quick Time Event',status:'En estudio',paragraphs:['Idea de evento ambiental en el que el jugador interviene sobre las vías antes de que pase un tren. La lógica de tiempos, avisos, consecuencias y accesibilidad del QTE no está definida.']},
-  {id:'reconstruccion',title:'Derrota y reconstrucción',status:'En estudio',paragraphs:['En lugar de una muerte convencional, el Gigante podría descomponerse en piezas recuperables por Hogarth. La primera prueba, si se desarrolla, usaría piezas predefinidas sin simulación compleja.']},
-  {id:'combate',title:'Combate y jefe de zona',status:'En estudio',paragraphs:['Los rayos oculares ya tienen prototipo con disparo libre y sobre objetivo fijado. Soldados y dragón son propuestas para una segunda etapa; el diseño de daño, estados, ataques y balance está pendiente.']}
+  {id:'papel',title:'Papel del jugador',paragraphs:['El jugador controla al Gigante y a Hogarth.']},
+  {id:'controles',title:'Controles',paragraphs:[
+   'Existen controles de movimiento y diferentes acciones del Gigante.'
+  ]},
+  {id:'bucle',title:'Ciclo de juego',paragraphs:['Por definir.']},
+  {id:'tornillos',title:'Tornillos y recursos',paragraphs:[
+   'Los tornillos funcionan como recurso del proyecto y ya existe un contador integrado en el HUD.',
+   'Los bloques destructibles pueden añadir tornillos al romperse.'
+  ]},
+  {id:'mejoras',title:'Sistema de mejoras',paragraphs:[
+   'Se han preparado variantes visuales del Gigante con diferentes piezas. El sistema jugable de mejoras todavía está por definir.'
+  ]},
+  {id:'escalada',title:'Escalada sobre el Gigante',paragraphs:[
+   'Por hacer. La idea es que Hogarth pueda utilizar el cuerpo del Gigante para alcanzar determinadas zonas.'
+  ]},
+  {id:'tren',title:'Tren y Quick Time Event',paragraphs:['Por hacer.']},
+  {id:'reconstruccion',title:'Derrota y reconstrucción',paragraphs:['Por hacer.']},
+  {id:'combate',title:'Combate y jefe de zona',paragraphs:[
+   'Actualmente existen pruebas de ataque mediante rayos oculares. El resto del combate está por desarrollar.'
+  ]}
  ]},
+
  {id:'sistemas',title:'08 · Sistemas y elementos',sections:[
-  {id:'entidades',title:'Entidades y componentes',status:'En estudio',paragraphs:['Se propone distinguir personaje jugable, NPC, enemigo, coleccionable y objeto interactivo. Cada entidad debe exponer solo los componentes que necesite (salud, interacción, percepción, ataque, etc.).']},
-  {id:'reglas',title:'Reglas del juego',status:'En estudio',bullets:['Solo un personaje controlado activamente a la vez.','La recogida de tornillos requiere entrar en rango o interactuar según el objeto.','La cuenta atrás se asocia al objetivo de nivel, no al ciclo de render.','Habilidades exclusivas según personaje y estado.','Toda condición de victoria y derrota debe mostrarse con claridad.'],note:'Estas reglas son propuestas y pueden modificarse tras las pruebas.'},
-  {id:'victoria',title:'Condiciones de victoria y derrota',status:'Pendiente',paragraphs:['Victoria provisional: completar el conjunto de tornillos y después superar el encuentro final. Derrota por tiempo, daño o reinicio de fase sigue por decidir; la reconstrucción puede sustituir una muerte tradicional.']},
-  {id:'ia',title:'IA y comportamiento',status:'En estudio',paragraphs:['Aplicaciones previstas de FSM y árboles de comportamiento para ciervos, soldados o NPC, si el calendario y la asignatura permiten aprovecharlas. No se debe confundir la asignatura Ingeniería de Videojuegos (patrones de arquitectura) con Comportamiento de Personajes.'],bullets:['Ciervo: reposo, paseo, alerta y huida.','Militar: patrullar, observar, perseguir y atacar.','Dean: actividad de taller y atención al jugador.']},
-  {id:'expresividad',title:'Expresividad y feedback',status:'En estudio',paragraphs:['Las intenciones deben comunicarse con mirada, gesto, audio, partículas, indicadores UI y cambios de animación. Como estudio inicial se prioriza feedback de Lock-On, recogida y peligro.']},
-  {id:'guardado',title:'Guardado y persistencia',status:'Pendiente',paragraphs:['Pendiente de definir: datos de partida, progreso de nivel, tornillos recogidos, mejoras y opciones. No se implementará antes de estabilizar el bucle principal.']},
-  {id:'audio',title:'Audio y música',status:'En estudio',paragraphs:['Se plantean pasos pesados del Gigante, sonido de vuelo, rayos, ambiente forestal, voz y música. Para una distribución pública serán necesarios recursos originales, licenciados o con permisos. La banda sonora de la película se mantiene como referencia creativa, no como activo de distribución autorizado.']},
-  {id:'distribucion',title:'Publicación, propiedad intelectual y monetización',status:'En estudio',paragraphs:['Prototipo estudiantil no oficial basado en una propiedad intelectual protegida. No existe plan de monetización aprobado. La eventual distribución pública o comercial exige resolver derechos sobre personajes, logos, imágenes, música y otros recursos.'],note:'No se presupone que la condición académica otorgue licencias de distribución pública.'}
+  {id:'entidades',title:'Entidades y componentes',paragraphs:[
+   'Actualmente se trabaja con personajes jugables, objetos destructibles y elementos interactivos básicos.'
+  ]},
+  {id:'reglas',title:'Reglas del juego',paragraphs:['Por definir.']},
+  {id:'victoria',title:'Condiciones de victoria y derrota',paragraphs:['Por definir.']},
+  {id:'ia',title:'IA y comportamiento',paragraphs:['Por hacer.']},
+  {id:'expresividad',title:'Expresividad y feedback',paragraphs:[
+   'Se están probando animación, efectos, UI y recursos gráficos de cómic como feedback de las acciones.'
+  ]},
+  {id:'guardado',title:'Guardado y persistencia',paragraphs:['Por hacer.']},
+  {id:'audio',title:'Audio y música',paragraphs:['Por hacer.']},
+  {id:'distribucion',title:'Publicación y distribución',paragraphs:['Por definir.']}
  ]},
+
  {id:'entrega',title:'09 · Arte Final: entrega',sections:[
-  {id:'rubrica',title:'Primera muestra de avance · 5 noviembre 2026',status:'Definido',paragraphs:['La evaluación del 20 % se divide en cuatro bloques del 5 %: personaje, escenario, imagen de marketing e interfaz. La rotoscopia o animática es opcional. El GDD y esta web son herramientas adicionales, no entregables obligatorios según la rúbrica consultada.'],table:{columns:['Bloque','Contenido de esta propuesta','Peso'],rows:[['Personaje','Modelo 3D del Gigante, ficha y turnaround','5 %'],['Escenario','Chatarrería/almacén, composición y personaje integrado','5 %'],['Marketing','Portada de cómic o splash art propio','5 %'],['Interfaz','HUD / pantalla de menú documentada','5 %']]}},
-  {id:'entregables',title:'Índice de archivos y presentación',status:'En estudio',bullets:['PDF con introducción, participantes, origen del proyecto y cuatro apartados.','Capturas JPG/PNG del personaje y escenario.','Imagen de portada / cartel y captura de interfaz.','ZIP con fuentes editables si lo solicita la entrega.','Indicar si el trabajo pertenece a megaproyecto interdisciplinar; todavía por confirmar.'],note:'La subida se realiza en Aula Virtual en los formatos admitidos PDF, JPG, MP4 y ZIP.'},
-  {id:'decisiones',title:'Decisiones y descartes justificados',status:'Definido',table:{columns:['Elemento','Decisión','Motivo'],rows:[['Tráiler','Posponer','Opcional en esta muestra; requiere mejores animaciones y cámaras.'],['Ciudad completa','Posponer','La rúbrica valora composición y escenario, no extensión.'],['Grease Pencil total','Probar en objetos concretos','Exportación y cámara libre añadirían riesgo.'],['Dragón y tren','Documentar, no implementar','No aportan directamente a los cuatro criterios artísticos.'],['GDD íntegro redactado','Estructura estable y desarrollo progresivo','Documento vivo para futuros proyectos.']]}},
-  {id:'evidencias',title:'Evidencias del proceso artístico',status:'En estudio',paragraphs:['Se incorporarán imágenes del modelo anterior y su revisión, bocetos del escenario, capturas de Unity, pruebas de Krita y comparativas de interfaz. Cada recurso llevará descripción, herramienta utilizada y autoría.']}
+  {id:'rubrica',title:'Primera muestra de avance · 5 noviembre 2026',paragraphs:[
+   'La primera fase reúne el trabajo realizado sobre personaje, escenario, imagen de marketing e interfaz.'
+  ]},
+  {id:'splash',title:'Splash art',paragraphs:[
+   'El cómic es un elemento presente en la película y se utiliza como punto de partida para la identidad gráfica del proyecto.'
+  ]},
+  {id:'entregables',title:'Índice de archivos y presentación',paragraphs:['Se completará con el material de la entrega.']},
+  {id:'decisiones',title:'Decisiones y descartes justificados',paragraphs:[
+   'En esta fase se ha priorizado definir y probar la dirección artística antes de ampliar el alcance jugable.'
+  ]},
+  {id:'evidencias',title:'Evidencias del proceso artístico',paragraphs:[
+   'Las capturas y piezas de esta web documentan el trabajo realizado durante el desarrollo.'
+  ]}
  ]},
+
  {id:'anexos',title:'10 · Anexos y referencias',sections:[
-  {id:'referencias',title:'Referencias principales',status:'Definido',bullets:['The Iron Giant (película, 1999): personajes, tono y ambientación.','Libro The Iron Man / The Iron Giant de Ted Hughes: tradición gráfica de la obra.','Shadow of the Colossus: referencia de escala y escalada.','War of the Monsters: combate de personajes enormes en escenarios urbanos.','Grid Studio: referencia de organización y profundidad documental (no de contenido).']},
-  {id:'glosario',title:'Glosario',status:'Definido',table:{columns:['Término','Significado'],rows:[['GDD','Documento de diseño del juego'],['Greybox','Volúmenes sencillos para validar escala y mecánicas'],['Turnaround','Vistas de personaje o rotación para explicar su forma'],['FSM','Máquina de estados finitos'],['MVP','Producto mínimo viable'],['HUD','Información visual durante el juego'],['Sprite Atlas','Agrupación de sprites en texturas'],['Grease Pencil','Sistema de dibujo y animación de Blender']]}},
-  {id:'historial',title:'Historial de decisiones y versiones',status:'Definido',table:{columns:['Fecha','Versión','Cambio'],rows:[['29/09/2026','Propuesta inicial','Memoria de trabajos previos y reinterpretación'],['29/10/2026','Plan artístico','Paleta, cómic, Grease Pencil y presentación web'],['01/11/2026','GDD web v0.2','Estructura extensa y estado del desarrollo']]}},
-  {id:'pendientes',title:'Preguntas abiertas',status:'Pendiente',bullets:['¿Qué ocurre cuando termina la cuenta atrás?','¿Qué tornillos cuentan para completar el nivel y cuáles se gastan?','¿Cómo se comporta Hogarth cuando no está controlado?','¿Qué requisitos exactos impone el megaproyecto entre asignaturas?','¿Cuáles son los controles finales en teclado y mando?','¿Qué assets externos podrán incluirse en una versión pública?']}
+  {id:'referencias',title:'Referencias principales',bullets:['The Iron Giant.','Cómic clásico y pop-art.']},
+  {id:'glosario',title:'Glosario',table:{
+   columns:['Término','Significado'],
+   rows:[
+    ['GDD','Game Design Document'],
+    ['HUD','Head-Up Display'],
+    ['Turnaround','Conjunto de vistas utilizado para documentar un personaje'],
+    ['Cel shading','Sombreado estilizado con transiciones marcadas entre luces y sombras']
+   ]
+  }},
+  {id:'historial',title:'Historial de decisiones y versiones',table:{
+   columns:['Fecha','Cambio'],
+   rows:[
+    ['29/09/2026','Propuesta inicial'],
+    ['01/11/2026','Primera estructura extensa del GDD'],
+    ['05/11/2026','Reescritura del GDD como memoria de desarrollo']
+   ]
+  }},
+  {id:'pendientes',title:'Preguntas abiertas',paragraphs:[
+   'Se completará cuando aparezcan decisiones pendientes que necesiten quedar registradas.'
+  ]}
  ]}
-];
-export const palette=[['Carbón','#1E1E1E'],['Gris oscuro','#2F3236'],['Gris UI','#4A4E54'],['Acero','#70767D'],['Blanco roto','#F2F2F0'],['Gris claro','#C9CDD1'],['Naranja pastel','#E79A62'],['Naranja luz','#F2B47C'],['Rojo pastel','#D66A6A'],['Azul energía','#7FA9C7']];
+]
+
+export const palette=[
+ ['Carbón','#1E1E1E'],
+ ['Gris oscuro','#2F3236'],
+ ['Gris UI','#4A4E54'],
+ ['Acero','#70767D'],
+ ['Blanco roto','#F2F2F0'],
+ ['Gris claro','#C9CDD1'],
+ ['Naranja pastel','#E79A62'],
+ ['Naranja luz','#F2B47C'],
+ ['Rojo pastel','#D66A6A'],
+ ['Azul energía','#7FA9C7'],
+ ['Burdeos cómic','#8F1D2C'],
+ ['Rojo tinta','#C92F2A'],
+ ['Naranja quemado','#E06A2A'],
+ ['Mostaza','#D99B38'],
+ ['Crema envejecido','#E6D1A7'],
+ ['Beige papel','#B7A58A'],
+ ['Azul grisáceo','#596D73'],
+ ['Azul petróleo','#31566B'],
+ ['Azul noche','#26323A'],
+ ['Negro tinta','#201F1D']
+]

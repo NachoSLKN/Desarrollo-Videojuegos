@@ -1,0 +1,8 @@
+.turnaround-block{margin-top:2rem}
+.turnaround-title{margin-bottom:1rem;font-size:.8rem;letter-spacing:.16em;font-weight:700;opacity:.7}
+.turnaround-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}
+.turnaround-grid figure{margin:0}
+.turnaround-grid img{display:block;width:100%;height:auto;border-radius:2px}
+.turnaround-grid figcaption{margin-top:.45rem;font-size:.8rem;opacity:.65}
+.turnaround-grid figure:first-child{grid-column:1 / -1}
+@media (max-width:760px){.turnaround-grid{grid-template-columns:1fr}.turnaround-grid figure:first-child{grid-column:auto}}
