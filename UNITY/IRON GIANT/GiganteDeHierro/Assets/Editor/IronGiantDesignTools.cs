@@ -1,152 +1,63 @@
-using System.IO;
 using UnityEditor;
 using UnityEngine;
 
+/// <summary>
+/// Single entry point to the online GDD. Set its URL once using the menu.
+/// </summary>
 public static class IronGiantDesignTools
 {
-    private const string DesignFolder = "Assets/Design";
+    private const string UrlPreference = "IronGiant.GDD.Url";
 
-    [MenuItem("Iron Giant/Design/Open Design Folder")]
-    public static void OpenDesignFolder()
-    {
-        string absolutePath = GetAbsolutePath(DesignFolder);
-
-        if (!Directory.Exists(absolutePath))
-        {
-            Debug.LogError($"Design folder not found: {absolutePath}");
-            return;
-        }
-
-        EditorUtility.RevealInFinder(absolutePath);
-    }
-
-    [MenuItem("Iron Giant/Design/Open GDD")]
+    [MenuItem("Iron Giant/Design/Open GDD Online", priority = 10)]
     public static void OpenGDD()
     {
-        OpenDocument("GDD.md");
-    }
-
-    [MenuItem("Iron Giant/Design/Open Roadmap")]
-    public static void OpenRoadmap()
-    {
-        OpenDocument("Roadmap.md");
-    }
-
-    [MenuItem("Iron Giant/Design/Open Todo")]
-    public static void OpenTodo()
-    {
-        OpenDocument("Todo.md");
-    }
-
-    [MenuItem("Iron Giant/Design/Open Technical Design")]
-    public static void OpenTechnicalDesign()
-    {
-        OpenDocument("TechnicalDesign.md");
-    }
-
-    [MenuItem("Iron Giant/Design/Open Animation List")]
-    public static void OpenAnimationList()
-    {
-        OpenDocument("AnimationList.md");
-    }
-
-    [MenuItem("Iron Giant/Design/Open Art Direction")]
-    public static void OpenArtDirection()
-    {
-        OpenDocument("ArtDirection.md");
-    }
-
-    [MenuItem("Iron Giant/Design/Open Asset Plan")]
-    public static void OpenAssetPlan()
-    {
-        OpenDocument("AssetPlan.md");
-    }
-
-    [MenuItem("Iron Giant/Design/Open Changelog")]
-    public static void OpenChangelog()
-    {
-        OpenDocument("Changelog.md");
-    }
-
-    [MenuItem("Iron Giant/Design/Open Controls")]
-    public static void OpenControls()
-    {
-        OpenDocument("Controls.md");
-    }
-
-    [MenuItem("Iron Giant/Design/Open Devlog Plan")]
-    public static void OpenDevlogPlan()
-    {
-        OpenDocument("DevlogPlan.md");
-    }
-
-    [MenuItem("Iron Giant/Design/Open Enemy List")]
-    public static void OpenEnemyList()
-    {
-        OpenDocument("EnemyList.md");
-    }
-
-    [MenuItem("Iron Giant/Design/Open Ideas")]
-    public static void OpenIdeas()
-    {
-        OpenDocument("Ideas.md");
-    }
-
-    [MenuItem("Iron Giant/Design/Open Known Issues")]
-    public static void OpenKnownIssues()
-    {
-        OpenDocument("KnownIssues.md");
-    }
-
-    [MenuItem("Iron Giant/Design/Open README")]
-    public static void OpenReadme()
-    {
-        OpenDocument("README.md");
-    }
-
-    [MenuItem("Iron Giant/Design/Open Scene Setup")]
-    public static void OpenSceneSetup()
-    {
-        OpenDocument("SceneSetup.md");
-    }
-
-    [MenuItem("Iron Giant/Design/Open Story")]
-    public static void OpenStory()
-    {
-        OpenDocument("Story.md");
-    }
-
-    private static void OpenDocument(string fileName)
-    {
-        string relativePath = Path.Combine(DesignFolder, fileName);
-        string absolutePath = GetAbsolutePath(relativePath);
-
-        if (!File.Exists(absolutePath))
+        string url = EditorPrefs.GetString(UrlPreference, "");
+        if (string.IsNullOrWhiteSpace(url))
         {
-            Debug.LogWarning($"Document not found: {relativePath}");
-
-            string designFolderPath = GetAbsolutePath(DesignFolder);
-
-            if (Directory.Exists(designFolderPath))
-            {
-                EditorUtility.RevealInFinder(designFolderPath);
-            }
-
+            ConfigureGDDUrl();
             return;
         }
 
-        EditorUtility.OpenWithDefaultApp(absolutePath);
+        Application.OpenURL(url);
     }
 
-    private static string GetAbsolutePath(string relativePath)
+    [MenuItem("Iron Giant/Design/Configure GDD URL", priority = 11)]
+    public static void ConfigureGDDUrl()
     {
-        string projectRoot = Directory.GetParent(Application.dataPath)?.FullName;
+        GDDUrlWindow.Open();
+    }
 
-        if (string.IsNullOrWhiteSpace(projectRoot))
+    private sealed class GDDUrlWindow : EditorWindow
+    {
+        private string url = "";
+
+        public static void Open()
         {
-            return relativePath;
+            GDDUrlWindow window = GetWindow<GDDUrlWindow>(true, "Iron Giant — GDD URL");
+            window.minSize = new Vector2(440, 125);
+            window.url = EditorPrefs.GetString(UrlPreference, "");
+            window.Show();
         }
 
-        return Path.GetFullPath(Path.Combine(projectRoot, relativePath));
+        private void OnGUI()
+        {
+            EditorGUILayout.LabelField("URL del GDD publicado en GitHub Pages", EditorStyles.boldLabel);
+            url = EditorGUILayout.TextField("URL", url);
+            EditorGUILayout.HelpBox("Introduce la URL real del GDD del Gigante. No la web de Grid Studio.", MessageType.Info);
+
+            if (GUILayout.Button("Guardar URL"))
+            {
+                string clean = url.Trim();
+                if (!System.Uri.TryCreate(clean, System.UriKind.Absolute, out System.Uri parsed)
+                    || (parsed.Scheme != System.Uri.UriSchemeHttps && parsed.Scheme != System.Uri.UriSchemeHttp))
+                {
+                    EditorUtility.DisplayDialog("URL no valida", "Introduce una URL http:// o https:// valida.", "OK");
+                    return;
+                }
+
+                EditorPrefs.SetString(UrlPreference, clean);
+                Close();
+            }
+        }
     }
 }

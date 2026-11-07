@@ -1,11 +1,11 @@
+
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
     public void PlayGame()
     {
-        SceneManager.LoadScene("CharacterTest");
+        SceneTransition.Load("CharacterTest");
     }
 
     public void QuitGame()
@@ -16,7 +16,4 @@ public class MenuManager : MonoBehaviour
         Application.Quit();
 #endif
     }
-
-
-
 }

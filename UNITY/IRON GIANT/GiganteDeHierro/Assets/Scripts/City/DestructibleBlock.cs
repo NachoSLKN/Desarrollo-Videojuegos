@@ -15,6 +15,9 @@ public class DestructibleBlock : MonoBehaviour
     [Header("Cleanup")]
     [SerializeField] private float destroyDelay = 6f;
 
+    [Header("Comic Effect")]
+[SerializeField] private GameObject crashPrefab;
+
     private float currentHealth;
     private Rigidbody blockRigidbody;
     private bool destroyed;
@@ -49,6 +52,15 @@ public class DestructibleBlock : MonoBehaviour
     )
     {
         destroyed = true;
+
+        if (crashPrefab != null)
+{
+    Instantiate(
+        crashPrefab,
+        hitPoint + Vector3.up,
+        Quaternion.identity
+    );
+}
 
         if (CurrencyManager.Instance == null)
         {
